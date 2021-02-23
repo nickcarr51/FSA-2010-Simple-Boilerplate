@@ -1,0 +1,42 @@
+{
+  "name": "fsa-2010-simple-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server",
+    "build": "webpack",
+    "build:watch": "webpack --watch",
+    "start:server": "node-dev --respawn server",
+    "start:dev": "npm run build:watch & npm run start:server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nickcarr51/FSA-2010-Simple-Boilerplate.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nickcarr51/FSA-2010-Simple-Boilerplate/issues"
+  },
+  "homepage": "https://github.com/nickcarr51/FSA-2010-Simple-Boilerplate#readme",
+  "devDependencies": {
+    "@babel/core": "^7.13.0",
+    "@babel/preset-react": "^7.12.13",
+    "babel-loader": "^8.2.2",
+    "webpack": "^5.24.0",
+    "webpack-cli": "^4.5.0"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "css-loader": "^5.0.2",
+    "express": "^4.17.1",
+    "file-loader": "^6.2.0",
+    "node-dev": "^6.3.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
+    "style-loader": "^2.0.0"
+  }
+}
