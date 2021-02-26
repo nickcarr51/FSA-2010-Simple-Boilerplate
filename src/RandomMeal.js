@@ -38,7 +38,7 @@ const RandomMeal = () => {
     return (
       <div className="dinner-box">
       <center>
-      <NavLink to="/AnotherMeal" className="main-nav" activeClassName="main-nav-active">Nah fam, show me another meal
+      <NavLink to="/AnotherMeal" className="main-nav" activeClassName="main-nav-active">I'm not feeling this, Show me another meal!
       </NavLink>
       <h1><strong>{meal.strMeal}</strong></h1>
       <h2>Ingredients</h2>
