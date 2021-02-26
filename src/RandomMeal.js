@@ -28,10 +28,11 @@ const RandomMeal = () => {
         break;
       }
     }
-    console.log(ingredients)
+    // console.log("meal state is ? ",meal) - meal is an object.
     let youTubeId = meal.strYoutube.slice(-11);
     let youTubeURL = "https://www.youtube.com/embed/"+youTubeId;
-    console.log(youTubeURL);
+
+    console.log("meal state is ",meal);
 
 
     return (
@@ -52,6 +53,14 @@ const RandomMeal = () => {
         })
       }
       </ul>
+
+      <h3>Recipe</h3>
+      <body>
+      {
+        meal.strInstructions
+      }
+      </body>
+
       {
 			meal.strYoutube ?
 		<div className="row">
