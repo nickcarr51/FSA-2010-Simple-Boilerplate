@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {NavLink} from "react-router-dom";
-import MealsByItem from './MealsByItem';
+import NavBar from "./NavBar";
 
 class Home extends Component {
   constructor() {
@@ -22,6 +22,7 @@ class Home extends Component {
     console.log("the state right now is", this.state.value)
     return (
       <div>
+        <NavBar />
         <center>
           <h1> What should I eat for dinner tonight? </h1>
           <img src = "dinner-home-page.jpg" />
@@ -34,10 +35,6 @@ class Home extends Component {
             <input type="submit" value="submit"/> */}
           </form>
         </center>
-        {Object.entries(this.state.value).length ? (
-        <MealsByItem value={this.state.value} /> ) : (
-          ``
-        )}
       </div>
     );
   }

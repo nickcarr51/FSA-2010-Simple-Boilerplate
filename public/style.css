@@ -8,6 +8,14 @@
   height: 20px;
 }
 
+.gap-nav {
+  width: 100%;
+}
+
+hr{
+  border: solid black 1px;
+}
+
 h1 {
   color: #06716e;
 }
@@ -37,33 +45,25 @@ ul {
   list-style-type: none;
  }
 
-.videoWrapper {
-	position: relative  ;
-	padding-bottom: 56.25% ;
-	padding-top: 25px ;
-  margin-left: 50px;
-}
-
-.videoWrapper iframe {
-	position: absolute  ;
-	top: 0  ;
-	left: 25% ;
-	width: 50% ;
-	height: 50% ;
-}
-
 .main-nav {
   margin-top: 10%;
-  border: solid pink 5px;
-  color: black;
-  font-weight: bolder ;
+  border: solid black 2px;
+  color: white;
+  font-size: large;
+  font-weight: normal ;
   text-decoration: none;
-  background-color: white;
+  background-color: #06716e;
+  width: 15em;
 }
 
 .main-nav:hover {
   color: gray;
 }
+
+.nav-bar {
+  margin-right: 5%;
+}
+
 
 .styled-link {
   color: black;

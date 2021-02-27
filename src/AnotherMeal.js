@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from 'axios';
 import {Link} from "react-router-dom";
+import NavBar from "./NavBar";
 
 const AnotherMeal = () => {
 
@@ -36,6 +37,7 @@ const AnotherMeal = () => {
 
     return (
       <div className="dinner-box">
+        <NavBar />
       <center>
       <h1><strong>{meal.strMeal}</strong></h1>
       <h2>Ingredients</h2>

@@ -1,9 +1,10 @@
+//axioscall for single meal
 import React, {useEffect, useState} from "react";
 import axios from 'axios';
-import {NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 import NavBar from "./NavBar";
 
-const RandomMeal = () => {
+const SingleMeal = () => {
 
   const [meal, setMeal] = useState(null);
 
@@ -29,11 +30,10 @@ const RandomMeal = () => {
         break;
       }
     }
-    // console.log("meal state is ? ",meal) - meal is an object.
+    console.log(ingredients)
     let youTubeId = meal.strYoutube.slice(-11);
     let youTubeURL = "https://www.youtube.com/embed/"+youTubeId;
-
-    console.log("meal state is ",meal);
+    console.log(youTubeURL);
 
 
     return (
@@ -53,33 +53,22 @@ const RandomMeal = () => {
         })
       }
       </ul>
-
-      <h3>Recipe</h3>
-      <body>
-      {
-        meal.strInstructions
-      }
-      </body>
-
       {
 			meal.strYoutube ?
 		<div className="row">
 			<h3>Video Recipe</h3>
-
 			<div className="videoWrapper">
 				<iframe width="420" height="315"
 				src={youTubeURL}>
 				</iframe>
 			</div>
-
 		</div>	: ''
 		}
-      <NavLink to="/AnotherMeal" className="main-nav" activeClassName="main-nav-active">Next
-      </NavLink>
-    </center>
-    </div>
+      </center>
+      </div>
+
      );
 
 }
 
-export default RandomMeal;
+export default SingleMeal;

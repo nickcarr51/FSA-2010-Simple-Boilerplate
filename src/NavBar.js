@@ -1,21 +1,29 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-// import HomeIcon from '@material-ui/icons/Home';
-
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <div className="header">
+    <div className="navBar">
       <nav>
-        {
-          <div className="navBar">
-            {/* The navbar will show these links after you log in */}
-            <Link to="/">
-              {/* <HomeIcon fontSize="small" /> */}
+
+            <NavLink to="/" className="nav-bar">
               Home
-            </Link>
-          </div>
-          }
+            </NavLink>
+
+            <NavLink to="/chickenmeal" className="nav-bar">
+              Chicken
+            </NavLink>
+
+
+            <NavLink to="/porkmeal" className="nav-bar">
+              Pork
+            </NavLink>
+
+
+            <NavLink to="/seafoodmeal" className="nav-bar">
+              Seafood
+            </NavLink>
+
       </nav>
       <hr />
     </div>

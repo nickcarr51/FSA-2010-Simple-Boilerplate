@@ -1,23 +1,15 @@
 import React, {useEffect, useState} from "react";
 import axios from 'axios';
 import {Link} from "react-router-dom";
+import NavBar from "./NavBar";
 
-const MealsByItem = (props) => {
+const PorkMeals = (props) => {
 
-      const propsParse = (props) => {
-        if (props.value !== ""){
-          let valuePassed = props.value
-        }
-        return valuePassed;
-      }
-
-      const [meal, setMeal] = useState(null);
+  const [meal, setMeal] = useState(null);
 
       useEffect(async () => {
-        let valuePassed = propsParse();
-        console.log("value passed", valuePassed)
         const { meals } = (
-          await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${valuePassed}`)
+          await axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?i=pork`)
         ).data;
         console.log("axios call return", meals)
         setMeal(meals);
@@ -30,8 +22,9 @@ const MealsByItem = (props) => {
 
     return (
       <div className="dinner-box">
+        <NavBar />
       <center>
-      <h2>Meals you can make with {valuePassed}</h2>
+      <h2>Meals you can make with Pork</h2>
       <ul>
       {
         meal.map((dishObj, idx) =>{
@@ -53,4 +46,4 @@ const MealsByItem = (props) => {
 
 }
 
-export default MealsByItem;
+export default PorkMeals;
