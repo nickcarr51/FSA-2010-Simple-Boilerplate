@@ -8,8 +8,8 @@ const intialState = {
   students:[]
 }
 
-const FETCH_CAMPUSES = 'FETCH_CAMPUSES';
 const LOAD_CAMPUSES = 'LOAD_CAMPUSES';
+const LOAD_STUDENTS = 'LOAD_STUDENTS';
 
 const loadCampuses = (campuses) => {
   return {
@@ -25,10 +25,28 @@ export const fetchCampuses = () => {
   }
 }
 
+const loadStudents = (students) => {
+  return {
+    type: LOAD_STUDENTS,
+    students
+  }
+}
+
+export const fetchStudents = () => {
+  return async(dispatch) => {
+    const students = await (await axios.get('/api/allStudents')).data;
+    dispatch(loadStudents(students));
+  }
+}
+
 const reducer = (state = intialState, action) => {
   if (action.type === LOAD_CAMPUSES) {
     const campuses = action.campuses
     return {...state, campuses}
+  }
+  else if (action.type === LOAD_STUDENTS) {
+    const students = action.students
+    return {...state, students}
   }
 
   return state

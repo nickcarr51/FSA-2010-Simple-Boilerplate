@@ -36,7 +36,6 @@ const syncAndSeed = async() => {
     const StudentOne = await Student.create({
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
-      // email: `${StudentOne.firstName}@hogwarts.com`,
       gpa: 3.8
     })
 

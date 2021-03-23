@@ -4,12 +4,13 @@ import AllCampuses from './components/AllCampuses'
 import AllStudents from './components/AllStudents'
 import Home from './components/Home'
 import { connect } from 'react-redux'
-import { fetchCampuses } from './store.js'
+import { fetchCampuses, fetchStudents } from './store.js'
 
 class App extends React.Component {
 
   componentDidMount() {
-    this.props.load()
+    this.props.loadCampus();
+    this.props.loadStudent();
   }
 
   render() {
@@ -32,7 +33,8 @@ class App extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    load: () => dispatch(fetchCampuses())
+    loadCampus: () => dispatch(fetchCampuses()),
+    loadStudent: () => dispatch(fetchStudents())
   }
 }
 

@@ -5,13 +5,18 @@ class AllCampuses extends React.Component {
   render() {
     return (
       <ul id='all-campuses'>
-        {this.props.categories.map((each) => {
+        {this.props.campuses.map((each) => {
           return (<li>
-            Campus: {each.name}
-            <br />
-            Address: {each.address}
-            <br />
-            <img src={each.imageUrl} />
+            <div className='info'>
+              Campus: {each.name}
+              <br />
+              Address: {each.address}
+              <br />
+              Description: {each.description}
+            </div>
+            <div className='graphic'>
+              <img src={each.imageUrl} />
+            </div>
           </li>)
         })}
       </ul>
@@ -21,7 +26,7 @@ class AllCampuses extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    categories: state.campuses
+    campuses: state.campuses
   }
 }
 

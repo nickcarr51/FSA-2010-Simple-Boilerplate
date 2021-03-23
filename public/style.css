@@ -15,3 +15,48 @@ h2 {
 #nav a {
   text-decoration: none;
 }
+
+/* styles for all campuses view */
+#all-campuses {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+#all-campuses li {
+  border: 1px solid red;
+  margin: 5px;
+  width: calc(50% - 1rem);
+  display: flex;
+  justify-content: space-between;
+}
+
+#all-campuses li>div {
+  width: 50%;
+  padding: 10px;
+}
+
+.graphic img {
+  max-width: 100%;
+}
+
+/* styles for students view */
+
+#all-students {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+#all-students li {
+  border: 1px solid red;
+  margin: 5px;
+  width: calc(25% - 1rem);
+  display: flex;
+  justify-content: space-between;
+}
+
+#all-students li>div {
+  width: 50%;
+  padding: 10px;
+}
