@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 class SingleStudent extends React.Component {
   render() {
@@ -18,7 +19,9 @@ class SingleStudent extends React.Component {
           </div>
           <div>
             <ul>
-            <li>Campus: {selectedStudent.campus.name}</li>
+            <Link to={'/campuses/'+selectedStudent.campus.id} >
+              <li>Campus: {selectedStudent.campus.name}</li>
+            </Link>
             <li>Address: {selectedStudent.campus.address}</li>
             <li>Description: {selectedStudent.campus.description}</li>
             </ul>

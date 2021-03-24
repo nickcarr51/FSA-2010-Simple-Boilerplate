@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 class SingleCampus extends React.Component {
   render() {
@@ -19,7 +20,9 @@ class SingleCampus extends React.Component {
             {selectedCampus.students.length > 0 ?
             selectedCampus.students.map(each => (
               <ul key={each.id}>
-                <li>Name: {each.firstName} {each.lastName}</li>
+                <Link to={'/students/'+each.id}>
+                  <li>Name: {each.firstName} {each.lastName}</li>
+                </Link>
                 <li>Email: {each.email}</li>
               </ul>
             ))
