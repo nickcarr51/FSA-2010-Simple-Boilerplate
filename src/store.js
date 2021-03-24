@@ -5,11 +5,15 @@ import thunk from 'redux-thunk';
 
 const intialState = {
   campuses: [],
-  students:[]
+  students:[],
+  selectedCampus: {},
+  selectedStudent: {}
 }
 
 const LOAD_CAMPUSES = 'LOAD_CAMPUSES';
 const LOAD_STUDENTS = 'LOAD_STUDENTS';
+const SELECT_CAMPUS = 'SELECT_CAMPUS';
+const SELECT_STUDENT = 'SELECT_STUDENT';
 
 const loadCampuses = (campuses) => {
   return {
@@ -39,6 +43,34 @@ export const fetchStudents = () => {
   }
 }
 
+const _selectCampus = (selectedCampus) => {
+  return {
+    type: SELECT_CAMPUS,
+    selectedCampus
+  }
+}
+
+export const selectCampus = (selectedCampusId) => {
+  return async(dispatch) => {
+    const selectedCampus = (await axios.get(`/api/campuses/${selectedCampusId}`)).data;
+    dispatch(_selectCampus(selectedCampus));
+  }
+}
+
+const _selectStudent = (selectedStudent) => {
+  return {
+    type: SELECT_STUDENT,
+    selectedStudent
+  }
+}
+
+export const selectStudent = (selectedStudentId) => {
+  return async(dispatch) => {
+    const selectedStudent = (await axios.get(`/api/students/${selectedStudentId}`)).data;
+    dispatch(_selectStudent(selectedStudent));
+  }
+}
+
 const reducer = (state = intialState, action) => {
   if (action.type === LOAD_CAMPUSES) {
     const campuses = action.campuses
@@ -47,6 +79,14 @@ const reducer = (state = intialState, action) => {
   else if (action.type === LOAD_STUDENTS) {
     const students = action.students
     return {...state, students}
+  }
+  else if (action.type === SELECT_CAMPUS) {
+    const selectedCampus = action.selectedCampus
+    return {...state, selectedCampus}
+  }
+  else if (action.type === SELECT_STUDENT) {
+    const selectedStudent = action.selectedStudent
+    return {...state, selectedStudent}
   }
 
   return state

@@ -36,25 +36,29 @@ const syncAndSeed = async() => {
     const StudentOne = await Student.create({
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
-      gpa: 3.8
+      gpa: 3.8,
+      campusId: gryffindor.id
     })
 
     const StudentTwo = await Student.create({
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
-      gpa: 3.5
+      gpa: 3.5,
+      campusId: hufflepuff.id
     })
 
     const StudentThree = await Student.create({
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
-      gpa: 4.0
+      gpa: 4.0,
+      campusId: ravenclaw.id
     })
 
     const StudentFour = await Student.create({
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
-      gpa: 3.0
+      gpa: 3.0,
+      campusId: hufflepuff.id
     })
 
     // db.close()
