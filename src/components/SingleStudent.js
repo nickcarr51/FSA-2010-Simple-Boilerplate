@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { selectCampus } from '../store'
 
 class SingleStudent extends React.Component {
   render() {
@@ -19,7 +20,7 @@ class SingleStudent extends React.Component {
           </div>
           <div>
             <ul>
-            <Link to={'/campuses/'+selectedStudent.campus.id} >
+            <Link to={'/campuses/'+selectedStudent.campus.id} onClick={() => this.props.selectCampus(selectedStudent.campus.id)}>
               <li>Campus: {selectedStudent.campus.name}</li>
             </Link>
             <li>Address: {selectedStudent.campus.address}</li>
@@ -40,4 +41,12 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(SingleStudent)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    selectCampus: (selectedCampusId) => {
+      return dispatch(selectCampus(selectedCampusId))
+    }
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(SingleStudent)
