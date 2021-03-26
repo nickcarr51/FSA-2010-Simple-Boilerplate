@@ -30,7 +30,8 @@ class AllStudents extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    students: state.students
+    students: state.students,
+    newStudent: state.newStudent
   }
 }
 

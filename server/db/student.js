@@ -19,7 +19,7 @@ const Student = db.define('student', {
   email: {
     type: VIRTUAL,
     get: function() {
-      return `${this.firstName}@hogwards.com`
+      return `${this.firstName}@hogwarts.com`
     },
     validate: {
       notEmpty: true,

@@ -7,13 +7,17 @@ const intialState = {
   campuses: [],
   students:[],
   selectedCampus: {},
-  selectedStudent: {}
+  selectedStudent: {},
+  newCampus: {},
+  newStudent: {}
 }
 
 const LOAD_CAMPUSES = 'LOAD_CAMPUSES';
 const LOAD_STUDENTS = 'LOAD_STUDENTS';
 const SELECT_CAMPUS = 'SELECT_CAMPUS';
 const SELECT_STUDENT = 'SELECT_STUDENT';
+const ADD_CAMPUS = 'ADD_CAMPUS';
+const ADD_STUDENT = 'ADD_STUDENT';
 
 const loadCampuses = (campuses) => {
   return {
@@ -71,6 +75,35 @@ export const selectStudent = (selectedStudentId) => {
   }
 }
 
+const _addCampus = (newCampus) => {
+  return {
+    type: ADD_CAMPUS,
+    newCampus
+  }
+}
+
+export const addCampus = (campus) => {
+  return async(dispatch) => {
+    const newCampus = (await axios.post('/api/campuses/new',campus)).data;
+    dispatch(_addCampus(newCampus));
+  }
+}
+
+const _addStudent = (newStudent) => {
+  return {
+    type: ADD_STUDENT,
+    newStudent
+  }
+}
+
+export const addStudent = (student) => {
+  return async(dispatch) => {
+    const newStudent = (await axios.post('/api/students/new',student)).data;
+    dispatch(_addStudent(newStudent));
+  }
+}
+
+
 const reducer = (state = intialState, action) => {
   if (action.type === LOAD_CAMPUSES) {
     const campuses = action.campuses
@@ -87,6 +120,16 @@ const reducer = (state = intialState, action) => {
   else if (action.type === SELECT_STUDENT) {
     const selectedStudent = action.selectedStudent
     return {...state, selectedStudent}
+  }
+  else if (action.type === ADD_CAMPUS) {
+    const newCampus = action.newCampus
+    state.campuses.push(newCampus)
+    return { ...state, newCampus}
+  }
+  else if (action.type === ADD_STUDENT) {
+    const newStudent = action.newStudent
+    state.students.push(newStudent)
+    return { ...state, newStudent}
   }
 
   return state

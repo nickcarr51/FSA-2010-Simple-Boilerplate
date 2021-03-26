@@ -5,6 +5,8 @@ import AllStudents from './components/AllStudents'
 import SingleCampus from './components/SingleCampus'
 import SingleStudent from './components/SingleStudent'
 import Home from './components/Home'
+import AddCampus from './components/AddCampus'
+import AddStudent from './components/AddStudent'
 import { connect } from 'react-redux'
 import { fetchCampuses, fetchStudents } from './store.js'
 
@@ -26,8 +28,10 @@ class App extends React.Component {
         </div>
         <Route exact path='/' component={Home} />
         <Route exact path='/campuses' component={AllCampuses} />
+        <Route exact path='/campuses' component={AddCampus} />
+        <Route exact path='/campuses/:campusId' component={SingleCampus} />
         <Route exact path='/students' component={AllStudents} />
-        <Route path='/campuses/:campusId' component={SingleCampus} />
+        <Route exact path='/students' component={AddStudent} />
         <Route path='/students/:studentId' component={SingleStudent} />
       </Router>
       </>

@@ -23,6 +23,9 @@ class AllCampuses extends React.Component {
             </div>
           </li>)
         })}
+        {/* <li className='new-campus'>
+          + Add new campus
+        </li> */}
       </ul>
     )
   }
@@ -30,7 +33,8 @@ class AllCampuses extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    campuses: state.campuses
+    campuses: state.campuses,
+    newCampus: state.newCampus
   }
 }
 
