@@ -33,6 +33,7 @@ h2,h3 {
   width: calc(50% - 1rem);
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 #all-campuses li>div {
@@ -40,9 +41,33 @@ h2,h3 {
   padding: 10px;
 }
 
+#all-campuses li>button {
+  width: 100%;
+  padding: 10px;
+}
+
 .graphic img {
   max-width: 100%;
 }
+
+/* styles for adding campus and student*/
+#add-campus, #add-student {
+  border: 1px solid green;
+  width: 90%;
+  margin: auto;
+  padding: 10px;
+}
+
+#add-campus form {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#add-student form {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 
 /* styles for students view */
 
@@ -58,10 +83,16 @@ h2,h3 {
   width: calc(25% - 1rem);
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 #all-students li>div {
   width: 50%;
+  padding: 10px;
+}
+
+#all-students li>button {
+  width: 100%;
   padding: 10px;
 }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import {selectStudent} from '../store'
+import {selectStudent,deleteStudent} from '../store'
 
 class AllStudents extends React.Component {
   render() {
@@ -21,6 +21,7 @@ class AllStudents extends React.Component {
             <div className='graphic'>
               <img src={each.imageUrl} />
             </div>
+            <button className='delete' onClick={() => this.props.deleteStudent(each)}>X</button>
           </li>)
         })}
       </ul>
@@ -39,6 +40,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     selectStudent: (selectedStudentId) => {
       return dispatch(selectStudent(selectedStudentId))
+    },
+    deleteStudent: (student) => {
+      return dispatch(deleteStudent(student))
     }
   }
 }

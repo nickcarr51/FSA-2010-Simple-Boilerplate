@@ -18,6 +18,8 @@ const SELECT_CAMPUS = 'SELECT_CAMPUS';
 const SELECT_STUDENT = 'SELECT_STUDENT';
 const ADD_CAMPUS = 'ADD_CAMPUS';
 const ADD_STUDENT = 'ADD_STUDENT';
+const DELETE_CAMPUS = 'DELETE_CAMPUS';
+const DELETE_STUDENT = 'DELETE_STUDENT';
 
 const loadCampuses = (campuses) => {
   return {
@@ -103,6 +105,33 @@ export const addStudent = (student) => {
   }
 }
 
+const _deleteCampus = (campus) => {
+  return {
+    type: DELETE_CAMPUS,
+    campus
+  }
+}
+
+export const deleteCampus = (campus) => {
+  return async(dispatch) => {
+    await axios.delete(`/api/campuses/${campus.id}`);
+    dispatch(_deleteCampus(campus));
+  }
+}
+
+const _deleteStudent = (student) => {
+  return {
+    type: DELETE_STUDENT,
+    student
+  }
+}
+
+export const deleteStudent = (student) => {
+  return async(dispatch) => {
+    await axios.delete(`/api/students/${student.id}`);
+    dispatch(_deleteStudent(student));
+  }
+}
 
 const reducer = (state = intialState, action) => {
   if (action.type === LOAD_CAMPUSES) {
@@ -130,6 +159,18 @@ const reducer = (state = intialState, action) => {
     const newStudent = action.newStudent
     state.students.push(newStudent)
     return { ...state, newStudent}
+  }
+  else if (action.type === DELETE_CAMPUS) {
+    const campuses = state.campuses.filter((campus) => {
+      return campus.id !== action.campus.id
+    });
+    return {...state, campuses}
+  }
+  else if (action.type === DELETE_STUDENT) {
+    const students = state.students.filter((student) => {
+      return student.id !== action.student.id
+    });
+    return {...state, students}
   }
 
   return state

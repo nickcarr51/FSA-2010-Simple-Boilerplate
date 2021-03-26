@@ -67,4 +67,24 @@ router.post('/students/new', async(req,res,next) => {
   }
 })
 
+router.delete('/campuses/:campusId', async(req, res, next) => {
+  try {
+    const campusToDelete = await Campus.findByPk(req.params.campusId);
+    await campusToDelete.destroy();
+    res.send(campusToDelete);
+  } catch(err) {
+    next(err)
+  }
+})
+
+router.delete('/students/:studentId', async(req, res, next) => {
+  try {
+    const studentToDelete = await Student.findByPk(req.params.studentId);
+    await studentToDelete.destroy();
+    res.send(studentToDelete);
+  } catch(err) {
+    next(err)
+  }
+})
+
 module.exports = router

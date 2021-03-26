@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { selectCampus } from '../store'
+import { selectCampus, deleteCampus } from '../store'
 
 class AllCampuses extends React.Component {
   render() {
@@ -21,11 +21,9 @@ class AllCampuses extends React.Component {
             <div className='graphic'>
               <img src={each.imageUrl} />
             </div>
+            <button className='delete' onClick={() => this.props.deleteCampus(each)}>X</button>
           </li>)
         })}
-        {/* <li className='new-campus'>
-          + Add new campus
-        </li> */}
       </ul>
     )
   }
@@ -42,6 +40,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     selectCampus: (selectedCampusId) => {
       return dispatch(selectCampus(selectedCampusId))
+    },
+    deleteCampus: (campus) => {
+      return dispatch(deleteCampus(campus))
     }
   }
 }
