@@ -20,6 +20,8 @@ const ADD_CAMPUS = 'ADD_CAMPUS';
 const ADD_STUDENT = 'ADD_STUDENT';
 const DELETE_CAMPUS = 'DELETE_CAMPUS';
 const DELETE_STUDENT = 'DELETE_STUDENT';
+const UPDATE_CAMPUS = 'UPDATE_CAMPUS';
+const UPDATE_STUDENT = 'UPDATE_STUDENT';
 
 const loadCampuses = (campuses) => {
   return {
@@ -133,6 +135,36 @@ export const deleteStudent = (student) => {
   }
 }
 
+const _updateCampus = (selectedCampus) => {
+  return {
+    type: UPDATE_CAMPUS,
+    selectedCampus
+  }
+}
+
+export const updateCampus = (selectedCampus, history) => {
+  return async(dispatch) => {
+    const updatedCampus = (await axios.put(`/api/campuses/${selectedCampus.id}`,selectedCampus)).data;
+    dispatch(_updateCampus(updatedCampus));
+    history.push(`/campuses/${updatedCampus.id}`)
+  }
+}
+
+const _updateStudent = (selectedStudent) => {
+  return {
+    type: UPDATE_STUDENT,
+    selectedStudent
+  }
+}
+
+export const updateStudent = (selectedStudent, history) => {
+  return async(dispatch) => {
+    const updatedStudent = (await axios.put(`/api/students/${selectedStudent.id}`,selectedStudent)).data;
+    dispatch(_updateStudent(updatedStudent));
+    history.push(`/students/${updatedStudent.id}`)
+  }
+}
+
 const reducer = (state = intialState, action) => {
   if (action.type === LOAD_CAMPUSES) {
     const campuses = action.campuses
@@ -171,6 +203,28 @@ const reducer = (state = intialState, action) => {
       return student.id !== action.student.id
     });
     return {...state, students}
+  }
+  else if (action.type === UPDATE_CAMPUS) {
+    const selectedCampus = action.selectedCampus;
+    const campuses = state.campuses.map((each) => {
+      if (each.id === action.selectedCampus.id) {
+        return action.selectedCampus
+      } else {
+        return each
+      }
+    })
+    return {...state, campuses, selectedCampus}
+  }
+  else if (action.type === UPDATE_STUDENT) {
+    const selectedStudent = action.selectedStudent;
+    const students = state.students.map((each) => {
+      if (each.id === action.selectedStudent.id) {
+        return action.selectedStudent
+      } else {
+        return each
+      }
+    })
+    return { ...state, students, selectedStudent}
   }
 
   return state

@@ -3,7 +3,9 @@ const {db, Campus, Student} = require('../../server/db')
 
 router.get('/allCampuses', async(req,res,next) => {
   try {
-    const allCampuses = await Campus.findAll();
+    const allCampuses = await Campus.findAll({
+      include: [Student]
+    });
     res.send(allCampuses);
   } catch(err) {
     next(err)
@@ -82,6 +84,26 @@ router.delete('/students/:studentId', async(req, res, next) => {
     const studentToDelete = await Student.findByPk(req.params.studentId);
     await studentToDelete.destroy();
     res.send(studentToDelete);
+  } catch(err) {
+    next(err)
+  }
+})
+
+router.put('/campuses/:campusId', async(req,res,next) => {
+  try {
+    const campusToUpdate = await Campus.findByPk(req.params.campusId);
+    await campusToUpdate.update(req.body);
+    res.send(campusToUpdate);
+  } catch(err) {
+    next(err)
+  }
+})
+
+router.put('/students/:studentId', async(req,res,next) => {
+  try {
+    const studentToUpdate = await Student.findByPk(req.params.studentId);
+    await studentToUpdate.update(req.body);
+    res.send(studentToUpdate);
   } catch(err) {
     next(err)
   }

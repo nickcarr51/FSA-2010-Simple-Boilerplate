@@ -5,8 +5,8 @@ import {selectStudent} from '../store'
 
 class SingleCampus extends React.Component {
   render() {
-    if (this.props.selectedCampus.length > 0) {
-      const selectedCampus = this.props.selectedCampus[0];
+    if (this.props.selectedCampus) {
+      const selectedCampus = this.props.selectedCampus;
       return (
         <div id='single-campus'>
           <div className='single-campus-info'>
@@ -18,7 +18,8 @@ class SingleCampus extends React.Component {
             <img src={selectedCampus.imageUrl} />
           </div>
           <div className='student-list'>
-            {selectedCampus.students.length > 0 ?
+            <h2>Student List</h2>
+            {selectedCampus.students !== undefined && selectedCampus.students.length > 0 ?
             selectedCampus.students.map(each => (
               <ul key={each.id}>
                 <Link to={'/students/'+each.id} onClick={() => this.props.selectStudent(each.id)}>
@@ -38,9 +39,10 @@ class SingleCampus extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, {match}) => {
+  const selectedCampusId = match.params.campusId*1;
   return {
-    selectedCampus: state.selectedCampus
+    selectedCampus: state.campuses.find((elem) => elem.id === selectedCampusId)
   }
 }
 

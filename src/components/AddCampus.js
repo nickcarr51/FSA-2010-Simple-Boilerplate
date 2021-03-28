@@ -25,7 +25,7 @@ class AddCampus extends React.Component {
   }
 
   render() {
-    console.log(this.state)
+    console.log('add form', this.state)
     return (
       <div id='add-campus'>
         <form onSubmit={this.handleSubmit}>

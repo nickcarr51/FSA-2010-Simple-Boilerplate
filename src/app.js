@@ -1,5 +1,6 @@
 import React from 'react'
 import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import AllCampuses from './components/AllCampuses'
 import AllStudents from './components/AllStudents'
 import SingleCampus from './components/SingleCampus'
@@ -7,7 +8,8 @@ import SingleStudent from './components/SingleStudent'
 import Home from './components/Home'
 import AddCampus from './components/AddCampus'
 import AddStudent from './components/AddStudent'
-import { connect } from 'react-redux'
+import EditCampus from './components/EditCampus'
+import EditStudent from './components/EditStudent'
 import { fetchCampuses, fetchStudents } from './store.js'
 
 class App extends React.Component {
@@ -30,9 +32,12 @@ class App extends React.Component {
         <Route exact path='/campuses' component={AllCampuses} />
         <Route exact path='/campuses' component={AddCampus} />
         <Route exact path='/campuses/:campusId' component={SingleCampus} />
+        <Route exact path='/campuses/:campusId' component={EditCampus} />
         <Route exact path='/students' component={AllStudents} />
         <Route exact path='/students' component={AddStudent} />
         <Route path='/students/:studentId' component={SingleStudent} />
+        <Route path='/students/:studentId' component={EditStudent} />
+
       </Router>
       </>
     );
