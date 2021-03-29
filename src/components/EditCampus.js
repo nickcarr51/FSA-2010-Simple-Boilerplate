@@ -27,7 +27,7 @@ class EditCampus extends React.Component {
   handleSubmit(ev) {
     ev.preventDefault();
     console.log({...this.props.selectedCampus, ...this.state});
-    this.props.updateCampus({...this.props.selectedCampus, ...this.state})
+    this.props.updateCampus({...this.props.selectedCampus, ...this.state});
   }
 
   render() {

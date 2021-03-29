@@ -6,8 +6,8 @@ import { selectCampus } from '../store'
 class SingleStudent extends React.Component {
   render() {
     console.log(this.props.selectedStudent)
-    if (this.props.selectedStudent.length > 0) {
-      const selectedStudent = this.props.selectedStudent[0]
+    if (this.props.selectedStudent) {
+      const selectedStudent = this.props.selectedStudent
       return (
         <div id='single-student'>
           <div>
@@ -19,6 +19,8 @@ class SingleStudent extends React.Component {
             Gpa: {selectedStudent.gpa}
           </div>
           <div>
+            <h3>Campus List</h3>
+            {selectedStudent.campus?
             <ul>
             <Link to={'/campuses/'+selectedStudent.campus.id} onClick={() => this.props.selectCampus(selectedStudent.campus.id)}>
               <li>Campus: {selectedStudent.campus.name}</li>
@@ -26,6 +28,10 @@ class SingleStudent extends React.Component {
             <li>Address: {selectedStudent.campus.address}</li>
             <li>Description: {selectedStudent.campus.description}</li>
             </ul>
+            :
+            <ul>
+            <li>No Campus associated!</li>
+            </ul>}
           </div>
         </div>
       )
@@ -35,9 +41,10 @@ class SingleStudent extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state,{match}) => {
+  const selectedStudentId = +match.params.studentId;
   return {
-    selectedStudent: state.selectedStudent
+    selectedStudent: state.students.find((elem) => elem.id === selectedStudentId)
   }
 }
 

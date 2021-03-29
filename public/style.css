@@ -127,6 +127,18 @@ h2,h3 {
   padding: 10px;
 }
 
+#edit-campus {
+  border: 1px solid green;
+  width: 90%;
+  margin: auto;
+  padding: 10px;
+}
+
+#edit-campus form {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 /* styles for single student view */
 #single-student {
   display: flex;
@@ -138,5 +150,17 @@ h2,h3 {
 
 #single-student img {
   max-width: 50%;
+}
+
+#edit-student {
+  border: 1px solid green;
+  width: 90%;
+  margin: auto;
+  padding: 10px;
+}
+
+#edit-student form {
+  display: flex;
+  justify-content: space-evenly;
 }
 
