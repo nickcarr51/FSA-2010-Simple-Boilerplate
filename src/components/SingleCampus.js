@@ -1,10 +1,29 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import {selectStudent} from '../store'
+import {selectStudent,updateCampus,updateStudent} from '../store'
 
 class SingleCampus extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      students: props.selectedCampus && props.selectedCampus.students ? props.selectedCampus.students : []
+    }
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(ev) {
+    let updatedStudents = this.state.students.filter((elem) => { return elem.id*1 !== ev.target.value*1});
+    // this.setState({
+    //   students: updatedStudents
+    // })
+    console.log({...this.props.selectedCampus, students: updatedStudents})
+    this.props.updateCampus({...this.props.selectedCampus, students: updatedStudents})
+  }
+
   render() {
+    // console.log(this.props);
+    console.log(this.state);
     if (this.props.selectedCampus) {
       const selectedCampus = this.props.selectedCampus;
       return (
@@ -19,13 +38,14 @@ class SingleCampus extends React.Component {
           </div>
           <div className='student-list'>
             <h2>Student List</h2>
-            {selectedCampus.students !== undefined && selectedCampus.students.length > 0 ?
+            {selectedCampus.students && selectedCampus.students.length > 0 ?
             selectedCampus.students.map(each => (
               <ul key={each.id}>
                 <Link to={'/students/'+each.id} onClick={() => this.props.selectStudent(each.id)}>
                   <li>Name: {each.firstName} {each.lastName}</li>
                 </Link>
                 <li>Email: {each.email}</li>
+                <button value={each.id} onClick={this.handleClick}>Unregister</button>
               </ul>
             ))
             :
@@ -46,10 +66,13 @@ const mapStateToProps = (state, {match}) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, {history}) => {
   return {
     selectStudent: (selectedStudentId) => {
       return dispatch(selectStudent(selectedStudentId))
+    },
+    updateCampus: (selectedCampus) => {
+      return dispatch(updateCampus(selectedCampus, history))
     }
   }
 }

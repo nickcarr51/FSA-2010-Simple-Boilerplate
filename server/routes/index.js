@@ -91,6 +91,7 @@ router.delete('/students/:studentId', async(req, res, next) => {
 
 router.put('/campuses/:campusId', async(req,res,next) => {
   try {
+    console.log(req.body);
     const campusToUpdate = await Campus.findByPk(req.params.campusId);
     await campusToUpdate.update(req.body);
     res.send(campusToUpdate);
@@ -101,6 +102,7 @@ router.put('/campuses/:campusId', async(req,res,next) => {
 
 router.put('/students/:studentId', async(req,res,next) => {
   try {
+    console.log(req.body);
     const studentToUpdate = await Student.findByPk(req.params.studentId);
     await studentToUpdate.update(req.body);
     res.send(studentToUpdate);
