@@ -1,14 +1,25 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { selectCampus, deleteCampus } from '../store'
+import { selectCampus, deleteCampus, setVisibility } from '../store'
 
 class AllCampuses extends React.Component {
   render() {
     return (
+      <>
+      <ul id='filters'>
+        Filter by:
+        <li onClick={()=>this.props.setVisibility('SHOW_ALL')}>All campuses</li>
+        <li onClick={()=>this.props.setVisibility('SHOW_EMPTY_CAMPUSES')}>Campuses with no students</li>
+      </ul>
       <ul id='all-campuses'>
         {this.props.campuses.map((each) => {
-          return (<li key={each.id}>
+          return (
+          <li
+            key={each.id}
+            style={{
+            display: each.show === false && "none"
+          }}>
             <div className='info'>
               <Link to={'/campuses/' + each.id} onClick={() => this.props.selectCampus(each.id)}>
                 <h3>{each.name}</h3>
@@ -25,6 +36,7 @@ class AllCampuses extends React.Component {
           </li>)
         })}
       </ul>
+      </>
     )
   }
 };
@@ -43,6 +55,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     deleteCampus: (campus) => {
       return dispatch(deleteCampus(campus))
+    },
+    setVisibility: (text) => {
+      return dispatch(setVisibility(text))
     }
   }
 }

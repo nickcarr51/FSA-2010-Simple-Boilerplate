@@ -3,14 +3,20 @@ import { createStore, applyMiddleware } from 'redux';
 import loggingMiddleware from 'redux-logger';
 import thunk from 'redux-thunk';
 
+const SHOW_ALL = 'SHOW_ALL';
+const SHOW_UNREGISTERED_STUDENTS = 'SHOW_UNREGISTERED_STUDENTS';
+const SHOW_EMPTY_CAMPUSES = 'SHOW_EMPTY_CAMPUSES'
+
 const intialState = {
   campuses: [],
   students:[],
   selectedCampus: {},
   selectedStudent: {},
   newCampus: {},
-  newStudent: {}
+  newStudent: {},
+  visibilityFilter: SHOW_ALL
 }
+
 
 const LOAD_CAMPUSES = 'LOAD_CAMPUSES';
 const LOAD_STUDENTS = 'LOAD_STUDENTS';
@@ -23,6 +29,7 @@ const DELETE_STUDENT = 'DELETE_STUDENT';
 const UPDATE_CAMPUS = 'UPDATE_CAMPUS';
 const UPDATE_STUDENT = 'UPDATE_STUDENT';
 const UNREGISTER_STUDENT = 'UNREGISTER_STUDENT';
+const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 
 const loadCampuses = (campuses) => {
   return {
@@ -181,13 +188,24 @@ export const unregisterStudent = (selectedStudent) => {
   }
 }
 
+export const setVisibility = (text) => {
+  return {
+    type: SET_VISIBILITY_FILTER,
+    text
+  }
+}
+
 const reducer = (state = intialState, action) => {
   if (action.type === LOAD_CAMPUSES) {
-    const campuses = action.campuses
+    const campuses = action.campuses.map((each) => {
+      return { ...each, show: true}
+    })
     return {...state, campuses}
   }
   else if (action.type === LOAD_STUDENTS) {
-    const students = action.students
+    const students = action.students.map((each) => {
+      return {...each, show:true}
+    })
     return {...state, students}
   }
   else if (action.type === SELECT_CAMPUS) {
@@ -242,15 +260,35 @@ const reducer = (state = intialState, action) => {
     })
     return { ...state, students, selectedStudent}
   }
-  // else if (action.type === UNREGISTER_STUDENT) {
-  //   const students = state.students.map((each) => {
-  //     if (each.id === action.selectedStudent.id) {
-  //       return action.selectedStudent
-  //     } else {
-  //       return each
-  //     }
-  //   })
-  //   return { XXX }
+  else if (action.type === SET_VISIBILITY_FILTER) {
+    if (action.text === SHOW_EMPTY_CAMPUSES) {
+      const campuses = state.campuses.map((each) => {
+        if (each.students.length > 0) {
+          return { ... each, show: false}
+        } else {
+          return each
+        }
+      })
+      return {...state, campuses}
+    } else if (action.text === SHOW_ALL) {
+      const campuses = state.campuses.map((each) => {
+        return {...each, show: true}
+      })
+      const students = state.students.map((each) => {
+        return { ...each, show:true}
+      })
+      return {...state, campuses, students}
+    } else if (action.text === SHOW_UNREGISTERED_STUDENTS) {
+      const students = state.students.map((each) => {
+        if (each.campusId !== null) {
+          return { ...each, show: false}
+        } else {
+          return each
+        }
+      })
+      return {...state, students}
+    }
+  }
 
   return state
 }

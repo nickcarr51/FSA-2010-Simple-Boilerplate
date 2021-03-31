@@ -164,3 +164,11 @@ h2,h3 {
   justify-content: space-evenly;
 }
 
+/* style for filters */
+#filters {
+  width: 50%;
+  border: 1px solid purple;
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+}
