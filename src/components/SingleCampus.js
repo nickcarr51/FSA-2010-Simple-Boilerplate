@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import {selectStudent,updateCampus,updateStudent} from '../store'
+import {selectStudent,updateCampus,unregisterStudent} from '../store'
 
 class SingleCampus extends React.Component {
   constructor(props) {
@@ -13,17 +13,16 @@ class SingleCampus extends React.Component {
   }
 
   handleClick(ev) {
+    let studentToUnregister = this.state.students.filter((elem) => {return elem.id*1 === ev.target.value*1});
+    // console.log({...studentToUnregister[0], campusId: null});
     let updatedStudents = this.state.students.filter((elem) => { return elem.id*1 !== ev.target.value*1});
-    // this.setState({
-    //   students: updatedStudents
-    // })
-    console.log({...this.props.selectedCampus, students: updatedStudents})
+    // console.log({...this.props.selectedCampus, students: updatedStudents})
+    this.props.unregisterStudent({...studentToUnregister[0], campusId: null})
     this.props.updateCampus({...this.props.selectedCampus, students: updatedStudents})
   }
 
   render() {
-    // console.log(this.props);
-    console.log(this.state);
+    console.log(this.props);
     if (this.props.selectedCampus) {
       const selectedCampus = this.props.selectedCampus;
       return (
@@ -73,6 +72,9 @@ const mapDispatchToProps = (dispatch, {history}) => {
     },
     updateCampus: (selectedCampus) => {
       return dispatch(updateCampus(selectedCampus, history))
+    },
+    unregisterStudent: (selectedStudent) => {
+      return dispatch(unregisterStudent(selectedStudent))
     }
   }
 }

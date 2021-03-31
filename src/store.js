@@ -22,6 +22,7 @@ const DELETE_CAMPUS = 'DELETE_CAMPUS';
 const DELETE_STUDENT = 'DELETE_STUDENT';
 const UPDATE_CAMPUS = 'UPDATE_CAMPUS';
 const UPDATE_STUDENT = 'UPDATE_STUDENT';
+const UNREGISTER_STUDENT = 'UNREGISTER_STUDENT';
 
 const loadCampuses = (campuses) => {
   return {
@@ -165,6 +166,21 @@ export const updateStudent = (selectedStudent, history) => {
   }
 }
 
+const _unregisterStudent = (selectedStudent) => {
+  return {
+    type: UNREGISTER_STUDENT,
+    selectedStudent
+  }
+}
+
+export const unregisterStudent = (selectedStudent) => {
+  return async(dispatch) => {
+    const unregisteredStudent = (await axios.put(`/api/students/${selectedStudent.id}`,selectedStudent)).data;
+    dispatch(_unregisterStudent(unregisteredStudent));
+    // history.push(`/campuses/${selectedCampus.id}`)
+  }
+}
+
 const reducer = (state = intialState, action) => {
   if (action.type === LOAD_CAMPUSES) {
     const campuses = action.campuses
@@ -215,7 +231,7 @@ const reducer = (state = intialState, action) => {
     })
     return {...state, campuses, selectedCampus}
   }
-  else if (action.type === UPDATE_STUDENT) {
+  else if (action.type === UPDATE_STUDENT || action.type === UNREGISTER_STUDENT) {
     const selectedStudent = action.selectedStudent;
     const students = state.students.map((each) => {
       if (each.id === action.selectedStudent.id) {
@@ -226,6 +242,15 @@ const reducer = (state = intialState, action) => {
     })
     return { ...state, students, selectedStudent}
   }
+  // else if (action.type === UNREGISTER_STUDENT) {
+  //   const students = state.students.map((each) => {
+  //     if (each.id === action.selectedStudent.id) {
+  //       return action.selectedStudent
+  //     } else {
+  //       return each
+  //     }
+  //   })
+  //   return { XXX }
 
   return state
 }
