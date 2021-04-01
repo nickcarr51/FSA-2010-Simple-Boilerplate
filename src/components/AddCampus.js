@@ -30,9 +30,9 @@ class AddCampus extends React.Component {
       <div id='add-campus'>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor='name'>Enter name:</label>
-          <input type='text' name='name' value={this.state.name} onChange={this.handleChange} />
+          <input type='text' name='name' required value={this.state.name} onChange={this.handleChange} />
           <label htmlFor='address'>Enter address:</label>
-          <input type='text' name='address' value={this.state.address} onChange={this.handleChange} />
+          <input type='text' name='address' required value={this.state.address} onChange={this.handleChange} />
           <button type='submit'>submit</button>
         </form>
       </div>

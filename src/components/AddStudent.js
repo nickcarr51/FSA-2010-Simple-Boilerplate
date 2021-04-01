@@ -31,9 +31,9 @@ class AddStudent extends React.Component {
       <div id='add-student'>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor='firstName'>Firstname:</label>
-          <input type='text' name='firstName' value={this.state.firstName} onChange={this.handleChange} />
+          <input type='text' name='firstName' required value={this.state.firstName} onChange={this.handleChange} />
           <label htmlFor='lastName'>Lastname:</label>
-          <input type='text' name='lastName' value={this.state.lastName} onChange={this.handleChange} />
+          <input type='text' name='lastName' required value={this.state.lastName} onChange={this.handleChange} />
           <label htmlFor='email'>Email:</label>
           <input type='email' name='email' value={this.state.email} pattern=".+@hogwarts.com" required onChange={this.handleChange} />
           <button type='submit'>submit</button>

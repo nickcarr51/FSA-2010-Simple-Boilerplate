@@ -1,10 +1,11 @@
 import React from 'react'
-import { HashRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import { HashRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import AllCampuses from './components/AllCampuses'
 import AllStudents from './components/AllStudents'
 import SingleCampus from './components/SingleCampus'
 import SingleStudent from './components/SingleStudent'
+import Nav from './components/Nav'
 import Home from './components/Home'
 import AddCampus from './components/AddCampus'
 import AddStudent from './components/AddStudent'
@@ -20,14 +21,11 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <>
       <Router>
-        <div id='nav'>
-          <Link to='/'><h2>Home</h2></Link>
-          <Link to='/campuses'><h2>Campuses</h2></Link>
-          <Link to='/students'><h2>Students</h2></Link>
-        </div>
+        <Route path='/' component={Nav} />
         <Route exact path='/' component={Home} />
         <Route exact path='/campuses' component={AllCampuses} />
         <Route exact path='/campuses' component={AddCampus} />
@@ -44,6 +42,10 @@ class App extends React.Component {
   }
 };
 
+const mapStateToProps = (state) => {
+  return state
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     loadCampus: () => dispatch(fetchCampuses()),
@@ -51,4 +53,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null,mapDispatchToProps)(App);
+export default connect(mapStateToProps,mapDispatchToProps)(App);

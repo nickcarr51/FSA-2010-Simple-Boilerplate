@@ -7,6 +7,10 @@ const SHOW_ALL = 'SHOW_ALL';
 const SHOW_UNREGISTERED_STUDENTS = 'SHOW_UNREGISTERED_STUDENTS';
 const SHOW_EMPTY_CAMPUSES = 'SHOW_EMPTY_CAMPUSES'
 
+const BY_GPA = 'BY_GPA';
+const BY_LASTNAME = 'BY_LASTNAME';
+const BY_NUM_OF_STUDENTS = 'BY_NUM_OF_STUDENTS';
+
 const intialState = {
   campuses: [],
   students:[],
@@ -14,7 +18,8 @@ const intialState = {
   selectedStudent: {},
   newCampus: {},
   newStudent: {},
-  visibilityFilter: SHOW_ALL
+  visibilityFilter: SHOW_ALL,
+  sortBy: ''
 }
 
 
@@ -30,6 +35,7 @@ const UPDATE_CAMPUS = 'UPDATE_CAMPUS';
 const UPDATE_STUDENT = 'UPDATE_STUDENT';
 const UNREGISTER_STUDENT = 'UNREGISTER_STUDENT';
 const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
+const SORT_BY = 'SORT_BY';
 
 const loadCampuses = (campuses) => {
   return {
@@ -195,6 +201,13 @@ export const setVisibility = (text) => {
   }
 }
 
+export const sortBy = (text) => {
+  return {
+    type: SORT_BY,
+    text
+  }
+}
+
 const reducer = (state = intialState, action) => {
   if (action.type === LOAD_CAMPUSES) {
     const campuses = action.campuses.map((each) => {
@@ -287,6 +300,29 @@ const reducer = (state = intialState, action) => {
         }
       })
       return {...state, students}
+    }
+  }
+  else if (action.type === SORT_BY) {
+    if (action.text === BY_GPA) {
+      const students = state.students.map((each)=> {
+        return each.gpa
+      }).sort().map((each)=> {
+        const toUse = state.students.find((elem) => {
+          return elem.gpa === each
+        })
+        return toUse
+      })
+      return { ...state, students}
+    } else if (action.text === BY_LASTNAME) {
+      const students = state.students.map((each)=> {
+        return each.lastName
+      }).sort().map((each)=> {
+        const toUse = state.students.find((elem) => {
+          return elem.lastName === each
+        })
+        return toUse
+      })
+      return { ...state, students}
     }
   }
 
