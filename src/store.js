@@ -323,6 +323,22 @@ const reducer = (state = intialState, action) => {
         return toUse
       })
       return { ...state, students}
+    } else if (action.text === BY_NUM_OF_STUDENTS) {
+      let uniqueCheck = [];
+      const campuses = state.campuses.map((each)=> {
+        if (each.students && each.students.length > 0) {
+          return each.students.length
+        } else {
+          return 0
+        }
+      }).sort().map((each)=> {
+        const toUse = state.campuses.find((elem) => {
+            return elem.students.length === each && !uniqueCheck.includes(elem.name)
+        })
+        uniqueCheck.push(toUse.name)
+        return toUse
+      })
+      return { ...state, campuses}
     }
   }
 

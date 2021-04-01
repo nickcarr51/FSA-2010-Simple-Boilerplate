@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { selectCampus, deleteCampus, setVisibility } from '../store'
+import { selectCampus, deleteCampus, setVisibility, sortBy } from '../store'
 
 class AllCampuses extends React.Component {
   render() {
@@ -15,7 +15,7 @@ class AllCampuses extends React.Component {
           </ul>
           <ul id='sorting'>
             Sort by:
-            <li>Number of students</li>
+            <li onClick={()=>this.props.sortBy('BY_NUM_OF_STUDENTS')}>Number of students</li>
           </ul>
         </div>
         <ul id='all-campuses'>
@@ -64,6 +64,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     setVisibility: (text) => {
       return dispatch(setVisibility(text))
+    },
+    sortBy: (text) => {
+      return dispatch(sortBy(text))
     }
   }
 }
