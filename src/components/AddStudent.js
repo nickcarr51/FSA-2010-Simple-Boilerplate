@@ -30,6 +30,7 @@ class AddStudent extends React.Component {
     return (
       <div id='add-student'>
         <form onSubmit={this.handleSubmit}>
+          <h4>Add a new student</h4>
           <label htmlFor='firstName'>Firstname:</label>
           <input type='text' name='firstName' required value={this.state.firstName} onChange={this.handleChange} />
           <label htmlFor='lastName'>Lastname:</label>

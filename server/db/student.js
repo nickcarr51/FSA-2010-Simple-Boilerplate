@@ -28,7 +28,7 @@ const Student = db.define('student', {
   },
   imageUrl: {
     type: STRING,
-    defaultValue: 'public/images/profile_3.png'
+    defaultValue: 'public/images/profile-placeholder.png'
   },
   gpa: {
     type: FLOAT,

@@ -7,14 +7,14 @@ class AllCampuses extends React.Component {
   render() {
     return (
       <div id='display'>
-        <div id='view-controls'>
+        <div className='view-controls'>
             <h3>Filter by</h3>
-          <ul id='filters'>
+          <ul className='filters'>
             <li onClick={()=>this.props.setVisibility('SHOW_ALL')} className={this.props.visibilityFilter === 'SHOW_ALL'? 'active' : undefined}>All campuses</li>
             <li onClick={()=>this.props.setVisibility('SHOW_EMPTY_CAMPUSES')} className={this.props.visibilityFilter === 'SHOW_EMPTY_CAMPUSES'? 'active' : undefined}>Campuses with no students</li>
           </ul>
             <h3>Sort by</h3>
-          <ul id='sorting'>
+          <ul className='sorting'>
             <li onClick={()=>this.props.sortBy('BY_NUM_OF_STUDENTS')} className={this.props.sortBy === 'BY_NUM_OF_STUDENTS' ? 'active' : undefined}>Number of students</li>
           </ul>
         </div>

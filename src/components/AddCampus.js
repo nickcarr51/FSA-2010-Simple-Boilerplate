@@ -25,10 +25,10 @@ class AddCampus extends React.Component {
   }
 
   render() {
-    console.log('add form', this.state)
     return (
       <div id='add-campus'>
         <form onSubmit={this.handleSubmit}>
+          <h4>Add a new campus</h4>
           <label htmlFor='name'>Enter name:</label>
           <input type='text' name='name' required value={this.state.name} onChange={this.handleChange} />
           <label htmlFor='address'>Enter address:</label>

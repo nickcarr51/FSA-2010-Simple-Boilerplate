@@ -7,17 +7,17 @@ class AllStudents extends React.Component {
   render() {
     return (
       <div id='display'>
-        <div id='view-controls'>
-          <ul id='filters'>
-            Filter by:
-            <li onClick={()=>this.props.setVisibility('SHOW_ALL')}>All students</li>
-            <li onClick={()=>this.props.setVisibility('SHOW_UNREGISTERED_STUDENTS')}>Unregistered students</li>
-          </ul>
-          <ul id='sorting'>
-            Sort by:
-            <li onClick={()=>this.props.sortBy('BY_LASTNAME')}>Lastname</li>
-            <li onClick={()=>this.props.sortBy('BY_GPA')}>GPA</li>
-          </ul>
+        <div className='view-controls'>
+          <h3>Filter by</h3>
+            <ul className='filters'>
+              <li onClick={()=>this.props.setVisibility('SHOW_ALL')} className={this.props.visibilityFilter === 'SHOW_ALL'? 'active' : undefined}>All students</li>
+              <li onClick={()=>this.props.setVisibility('SHOW_UNREGISTERED_STUDENTS')} className={this.props.visibilityFilter === 'SHOW_UNREGISTERED_STUDENTS'? 'active' : undefined}>Unregistered students</li>
+            </ul>
+          <h3>Sort by</h3>
+            <ul className='sorting'>
+              <li onClick={()=>this.props.sortBy('BY_LASTNAME')} className={this.props.sortBy === 'BY_LASTNAME' ? 'active':undefined}>Lastname</li>
+              <li onClick={()=>this.props.sortBy('BY_GPA')} className={this.props.sortBy === 'BY_GPA' ? 'active':undefined}>GPA</li>
+            </ul>
         </div>
         <ul id='all-students'>
           {this.props.students.map((each) => {
@@ -29,17 +29,17 @@ class AllStudents extends React.Component {
             }}>
               <div className='info'>
                 <Link to={'/students/'+each.id} onClick={() => this.props.selectStudent(each.id)}>
-                Name: {each.firstName} {each.lastName}
+                <h3> 🎓 {each.firstName} {each.lastName}</h3>
                 </Link>
-                <br />
-                Email: {each.email}
-                <br />
-                Gpa: {each.gpa}
+                <h4>Email</h4>
+                <p>{each.email}</p>
+                <h4>GPA</h4>
+                <p>{each.gpa}</p>
               </div>
               <div className='graphic'>
                 <img src={each.imageUrl} />
               </div>
-              <button className='delete' onClick={() => this.props.deleteStudent(each)}>X</button>
+              <button className='delete' onClick={() => this.props.deleteStudent(each)}>Delete</button>
             </li>)
           })}
         </ul>
@@ -51,7 +51,9 @@ class AllStudents extends React.Component {
 const mapStateToProps = (state) => {
   return {
     students: state.students,
-    newStudent: state.newStudent
+    newStudent: state.newStudent,
+    visibilityFilter: state.visibilityFilter,
+    sortBy: state.sortBy
   }
 }
 

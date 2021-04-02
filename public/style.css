@@ -133,11 +133,18 @@ h1,h2,h3 {
 }
 
 /* styles for adding campus and student*/
+
 #add-campus, #add-student {
-  border: 1px solid green;
+  border-radius: 15px;
+  background-color: #FAF3F3;
+  box-shadow:
+    inset 45px 20px 80px -36px #f08e8e,
+    inset 50px 40px 109px -38px #a8b569;
   width: 90%;
+  padding-top: 20px;
+  padding-bottom: 20px;
   margin: auto;
-  padding: 10px;
+  margin-top: 20px;
 }
 
 #add-campus form {
@@ -145,11 +152,36 @@ h1,h2,h3 {
   justify-content: space-evenly;
 }
 
+#add-campus h4 {
+  margin: 0;
+  padding-right: 30px;
+  border-right: 1px solid white;
+}
+
+#add-campus button {
+  border: 0;
+  width: 100px;
+  color: white;
+  background-color: #9b5353;
+}
+
 #add-student form {
   display: flex;
   justify-content: space-evenly;
 }
 
+#add-student h4 {
+  margin: 0;
+  padding-right: 30px;
+  border-right: 1px solid white;
+}
+
+#add-student button {
+  border: 0;
+  width: 100px;
+  color: white;
+  background-color: #9b5353;
+}
 
 /* styles for students view */
 
@@ -161,7 +193,8 @@ h1,h2,h3 {
 }
 
 #all-students li {
-  border: 1px solid red;
+  border: 1px solid #384949;
+  border-radius: 10px;
   margin: 5px;
   width: calc(50% - 1rem);
   display: flex;
@@ -176,7 +209,12 @@ h1,h2,h3 {
 
 #all-students li>button {
   width: 100%;
-  padding: 10px;
+  height: 30px;
+  border-radius: 0 0 10px 10px;
+  border: 0;
+  background-color: #384949;
+  color: #e6e4e1;
+  font-size: 15px;
 }
 
 /* styles for the single campus view */
@@ -238,19 +276,19 @@ h1,h2,h3 {
 
 /* style for filters */
 
-#view-controls {
+.view-controls {
   background-color: #ede9e3;
   width: 30%;
   display: flex;
   flex-direction: column;
 }
 
-#view-controls h3 {
+.view-controls h3 {
   padding-left: 20px;
   margin-bottom: 0;
 }
 
-#view-controls li {
+.view-controls li {
   cursor: pointer;
   font-size: 18px;
   font-weight: bolder;
@@ -259,13 +297,13 @@ h1,h2,h3 {
   border-radius: 5px 0 0 5px;
 }
 
-#filters {
+.filters {
   display: flex;
   flex-direction: column;
   list-style: none;
 }
 
-#filters .active {
+.filters .active {
   background-color: #a6aeaa;
 }
 
@@ -273,13 +311,13 @@ h1,h2,h3 {
   content: ' ✔️';
 }
 
-#sorting {
+.sorting {
   display: flex;
   flex-direction: column;
   list-style: none;
 }
 
-#sorting .active {
+.sorting .active {
   background-color: #8e7a8e;
 }
 
