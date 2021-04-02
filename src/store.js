@@ -276,13 +276,13 @@ const reducer = (state = intialState, action) => {
   else if (action.type === SET_VISIBILITY_FILTER) {
     if (action.text === SHOW_EMPTY_CAMPUSES) {
       const campuses = state.campuses.map((each) => {
-        if (each.students.length > 0) {
+        if (each.students !== undefined && each.students.length > 0) {
           return { ... each, show: false}
         } else {
           return each
         }
       })
-      return {...state, campuses}
+      return {...state, campuses, visibilityFilter: action.text}
     } else if (action.text === SHOW_ALL) {
       const campuses = state.campuses.map((each) => {
         return {...each, show: true}
@@ -290,7 +290,7 @@ const reducer = (state = intialState, action) => {
       const students = state.students.map((each) => {
         return { ...each, show:true}
       })
-      return {...state, campuses, students}
+      return {...state, campuses, students, visibilityFilter: action.text}
     } else if (action.text === SHOW_UNREGISTERED_STUDENTS) {
       const students = state.students.map((each) => {
         if (each.campusId !== null) {
@@ -299,7 +299,7 @@ const reducer = (state = intialState, action) => {
           return each
         }
       })
-      return {...state, students}
+      return {...state, students, visibilityFilter: action.text}
     }
   }
   else if (action.type === SORT_BY) {
@@ -312,7 +312,7 @@ const reducer = (state = intialState, action) => {
         })
         return toUse
       })
-      return { ...state, students}
+      return { ...state, students, sortBy:action.text}
     } else if (action.text === BY_LASTNAME) {
       const students = state.students.map((each)=> {
         return each.lastName
@@ -322,7 +322,7 @@ const reducer = (state = intialState, action) => {
         })
         return toUse
       })
-      return { ...state, students}
+      return { ...state, students, sortBy:action.text}
     } else if (action.text === BY_NUM_OF_STUDENTS) {
       let uniqueCheck = [];
       const campuses = state.campuses.map((each)=> {
@@ -338,7 +338,7 @@ const reducer = (state = intialState, action) => {
         uniqueCheck.push(toUse.name)
         return toUse
       })
-      return { ...state, campuses}
+      return { ...state, campuses, sortBy:action.text}
     }
   }
 

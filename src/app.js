@@ -1,5 +1,5 @@
 import React from 'react'
-import { HashRouter as Router, Route } from 'react-router-dom'
+import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import AllCampuses from './components/AllCampuses'
 import AllStudents from './components/AllStudents'
@@ -11,6 +11,7 @@ import AddCampus from './components/AddCampus'
 import AddStudent from './components/AddStudent'
 import EditCampus from './components/EditCampus'
 import EditStudent from './components/EditStudent'
+import ErrorPage from './components/ErrorPage'
 import { fetchCampuses, fetchStudents } from './store.js'
 
 class App extends React.Component {
@@ -25,17 +26,19 @@ class App extends React.Component {
     return (
       <>
       <Router>
-        <Route path='/' component={Nav} />
-        <Route exact path='/' component={Home} />
-        <Route exact path='/campuses' component={AllCampuses} />
-        <Route exact path='/campuses' component={AddCampus} />
-        <Route exact path='/campuses/:campusId' component={SingleCampus} />
-        <Route exact path='/campuses/:campusId' component={EditCampus} />
-        <Route exact path='/students' component={AllStudents} />
-        <Route exact path='/students' component={AddStudent} />
-        <Route path='/students/:studentId' component={SingleStudent} />
-        <Route path='/students/:studentId' component={EditStudent} />
-
+          <Route path='/' component={Nav} />
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/campuses' component={AllCampuses} />
+          <Route exact path='/campuses/:campusId' component={SingleCampus} />
+          <Route exact path='/students' component={AllStudents} />
+          <Route exact path='/students/:studentId' component={SingleStudent} />
+          <Route component={ErrorPage} />
+        </Switch>
+          <Route exact path='/students' component={AddStudent} />
+          <Route exact path='/campuses' component={AddCampus} />
+          <Route exact path='/campuses/:campusId' component={EditCampus} />
+          <Route exact path='/students/:studentId' component={EditStudent} />
       </Router>
       </>
     );

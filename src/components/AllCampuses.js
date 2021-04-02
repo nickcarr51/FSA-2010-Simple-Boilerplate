@@ -8,14 +8,14 @@ class AllCampuses extends React.Component {
     return (
       <div id='display'>
         <div id='view-controls'>
+            <h3>Filter by</h3>
           <ul id='filters'>
-            Filter by:
-            <li onClick={()=>this.props.setVisibility('SHOW_ALL')}>All campuses</li>
-            <li onClick={()=>this.props.setVisibility('SHOW_EMPTY_CAMPUSES')}>Campuses with no students</li>
+            <li onClick={()=>this.props.setVisibility('SHOW_ALL')} className={this.props.visibilityFilter === 'SHOW_ALL'? 'active' : undefined}>All campuses</li>
+            <li onClick={()=>this.props.setVisibility('SHOW_EMPTY_CAMPUSES')} className={this.props.visibilityFilter === 'SHOW_EMPTY_CAMPUSES'? 'active' : undefined}>Campuses with no students</li>
           </ul>
+            <h3>Sort by</h3>
           <ul id='sorting'>
-            Sort by:
-            <li onClick={()=>this.props.sortBy('BY_NUM_OF_STUDENTS')}>Number of students</li>
+            <li onClick={()=>this.props.sortBy('BY_NUM_OF_STUDENTS')} className={this.props.sortBy === 'BY_NUM_OF_STUDENTS' ? 'active' : undefined}>Number of students</li>
           </ul>
         </div>
         <ul id='all-campuses'>
@@ -29,16 +29,16 @@ class AllCampuses extends React.Component {
               <div className='info'>
                 <Link to={'/campuses/' + each.id} onClick={() => this.props.selectCampus(each.id)}>
                   <h3>{each.name}</h3>
+                <h4>🧭 Address</h4>
+                <p>{each.address}</p>
+                <h4>💬 Description</h4>
+                <p>{each.description}</p>
+                <div className='graphic'>
+                  <img src={each.imageUrl} />
+                </div>
                 </Link>
-                <br />
-                Address: {each.address}
-                <br />
-                Description: {each.description}
               </div>
-              <div className='graphic'>
-                <img src={each.imageUrl} />
-              </div>
-              <button className='delete' onClick={() => this.props.deleteCampus(each)}>X</button>
+                <button className='delete' onClick={() => this.props.deleteCampus(each)}>Delete</button>
             </li>)
           })}
         </ul>
@@ -50,7 +50,9 @@ class AllCampuses extends React.Component {
 const mapStateToProps = (state) => {
   return {
     campuses: state.campuses,
-    newCampus: state.newCampus
+    newCampus: state.newCampus,
+    visibilityFilter: state.visibilityFilter,
+    sortBy: state.sortBy
   }
 }
 

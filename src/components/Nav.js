@@ -4,29 +4,32 @@ import { connect } from 'react-redux'
 
 const Nav = (props) => {
   return (
-    <div id='nav'>
-      <Link
-      to='/'
+    <ul id='nav'>
+      <li
       className={
         props.location.pathname === '/' ? 'selected':undefined
       }>
-        <h1>Home</h1>
-      </Link>
-      <Link
-      to='/campuses'
+        <Link to='/'>
+          <h1>Home</h1>
+        </Link>
+      </li>
+      <li
       className={
         props.location.pathname === '/campuses' ? 'selected':undefined
       }>
-        <h1>Campuses</h1>
-      </Link>
-      <Link
-      to='/students'
+        <Link to='/campuses'>
+          <h1>Campuses</h1>
+        </Link>
+      </li>
+      <li
       className={
         props.location.pathname === '/students' ? 'selected':undefined
       }>
-        <h1>Students</h1>
-      </Link>
-    </div>
+        <Link to='/students'>
+          <h1>Students</h1>
+        </Link>
+      </li>
+    </ul>
   )
 }
 

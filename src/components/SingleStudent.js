@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom'
 import { selectCampus } from '../store'
 
 class SingleStudent extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
   render() {
     console.log(this.props.selectedStudent)
     if (this.props.selectedStudent) {
@@ -36,7 +40,14 @@ class SingleStudent extends React.Component {
         </div>
       )
     } else {
-      return 'Reselect the student!'
+      return (
+        <div id='display'>
+          <div id='error'>
+            <h3>Oops..🥺 Something went wrong...</h3>
+            <p>The student you are trying to view doesn't exist. <br/> Please reselect a student.</p>
+          </div>
+        </div>
+      )
     }
   }
 }

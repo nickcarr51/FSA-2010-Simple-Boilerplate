@@ -53,7 +53,14 @@ class SingleCampus extends React.Component {
         </div>
       )
     } else {
-      return 'Reselect a campus!'
+      return (
+        <div id='display'>
+          <div id='error'>
+            <h3>Oops..🥺 Something went wrong...</h3>
+            <p>The campus you are trying to view doesn't exist. <br/> Please reselect a campus.</p>
+          </div>
+        </div>
+        )
     }
   }
 }
