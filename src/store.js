@@ -19,7 +19,7 @@ const intialState = {
   newCampus: {},
   newStudent: {},
   visibilityFilter: SHOW_ALL,
-  sortBy: ''
+  sortBy: 'BY_DEFAULT'
 }
 
 

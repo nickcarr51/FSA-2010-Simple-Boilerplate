@@ -34,6 +34,7 @@ class EditCampus extends React.Component {
     return (
     <div id='edit-campus'>
       <form onSubmit={this.handleSubmit}>
+        <h4>Edit campus</h4>
         <label htmlFor='name'>Enter name:</label>
         <input type='text' name='name' value={this.state.name} onChange={this.handleChange} />
         <label htmlFor='address'>Enter address:</label>

@@ -10,7 +10,7 @@ const Nav = (props) => {
         props.location.pathname === '/' ? 'selected':undefined
       }>
         <Link to='/'>
-          <h1>Home</h1>
+          <h3>Home</h3>
         </Link>
       </li>
       <li
@@ -18,7 +18,7 @@ const Nav = (props) => {
         props.location.pathname === '/campuses' ? 'selected':undefined
       }>
         <Link to='/campuses'>
-          <h1>Campuses</h1>
+          <h3>Campuses</h3>
         </Link>
       </li>
       <li
@@ -26,7 +26,7 @@ const Nav = (props) => {
         props.location.pathname === '/students' ? 'selected':undefined
       }>
         <Link to='/students'>
-          <h1>Students</h1>
+          <h3>Students</h3>
         </Link>
       </li>
     </ul>

@@ -6,7 +6,18 @@
 
 body {
   margin: 0;
-  background-color: #D8DCDA;
+  background-image:
+    linear-gradient(170deg,#f8e4d8,#e6c4a3 25%,#e6b193 50%);
+  margin-top: 40px;
+  padding: 20px;
+}
+
+#app {
+  background-color: #ede2dc;
+  width: 90%;
+  margin: auto;
+  height: auto;
+  padding: 30px 20px 20px 20px;
 }
 
 #content {
@@ -22,45 +33,62 @@ h1,h2,h3 {
   color: #1f3034;
 }
 
-#app {
-  width: 80%;
-  margin: auto;
-}
-
 /* style for nav bar */
 
 #nav {
   list-style: none;
   display: flex;
-  margin: 0;
-  padding-left: 15px;
-  padding-right: 15px;
+  background-color: white;
+  width: 50%;
+  margin: auto;
+  margin-bottom: 20px;
+  padding: 0;
+  /* border: 1px solid #384949; */
+  border-radius: 15px;
+  box-shadow: #e6b193 3px -5px 10px;
 }
 
 #nav a {
   text-decoration: none;
 }
 
+#nav h3 {
+  margin: 10px;
+}
+
 #nav>li {
   width: calc(100% / 3);
   text-align: center;
   margin: 0;
+  border-right: 1px solid #e6b193;
+  padding-right: 15px;
+}
+
+#nav>li:last-child {
+  border-right: 0;
 }
 
 #nav .selected {
   background-color: #FCFBFB;
-  border-radius: 15px 15px 0 0;
-  box-shadow: #a6aeaa 5px -8px 10px;
 }
 
-.selected h1 {
+#nav>li:first-child {
+  border-radius: 15px 0 0 15px;
+}
+
+#nav>li:last-child {
+  border-radius: 0 15px 15px 0;
+}
+
+.selected h3 {
   color:#FCFBFB;
-  text-shadow: #566361 1px 0 10px;
+  margin: 10px;
+  text-shadow: #cc9470 1px 0 10px;
 }
 
 #display {
   display: flex;
-  background-color: #FCFBFB;
+  /* background-color: #FCFBFB; */
   border-radius: 15px;
 }
 
@@ -225,6 +253,8 @@ h1,h2,h3 {
 
 /* styles for the single campus view */
 #single-campus {
+  width: 90%;
+  margin: auto;
   display: flex;
   background-color: #FCFBFB;
   border-radius: 15px;
@@ -266,15 +296,34 @@ h1,h2,h3 {
 }
 
 #edit-campus {
-  border: 1px solid green;
+  border-radius: 15px;
+  background-color: #FAF3F3;
+  box-shadow:
+    inset 45px 20px 80px -36px #f08e8e,
+    inset 50px 40px 109px -38px #a8b569;
   width: 90%;
+  padding-top: 20px;
+  padding-bottom: 20px;
   margin: auto;
-  padding: 10px;
+  margin-top: 20px;
 }
 
 #edit-campus form {
   display: flex;
   justify-content: space-evenly;
+}
+
+#edit-campus h4 {
+  margin: 0;
+  padding-right: 30px;
+  border-right: 1px solid white;
+}
+
+#edit-campus button {
+  border: 0;
+  width: 100px;
+  color: white;
+  background-color: #9b5353;
 }
 
 /* styles for single student view */
@@ -305,16 +354,20 @@ h1,h2,h3 {
 /* style for filters */
 
 .view-controls {
-  border-radius: 15px 0 0 15px;
-  background-color: #ede9e3;
+  margin-top: 20px;
+  margin-left: 40px;
+  border-radius: 15px 15px 15px 15px;
+  background-color: #566361;
   width: 30%;
   display: flex;
   flex-direction: column;
+  height: 500px;
 }
 
 .view-controls h3 {
   padding-left: 20px;
   margin-bottom: 0;
+  color: #e6e4e1;
 }
 
 .view-controls li {
@@ -324,6 +377,7 @@ h1,h2,h3 {
   height: 35px;
   padding-left: 5px;
   border-radius: 5px 0 0 5px;
+  color: #e6e4e1;
 }
 
 .filters {
@@ -334,6 +388,7 @@ h1,h2,h3 {
 
 .filters .active {
   background-color: #a6aeaa;
+  color: #1f3034;
 }
 
 .active::after {
@@ -348,6 +403,7 @@ h1,h2,h3 {
 
 .sorting .active {
   background-color: #8e7a8e;
+  color: #1f3034;
 }
 
 /* Style for error */
