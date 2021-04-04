@@ -1,9 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { selectCampus, deleteCampus, setVisibility, sortBy } from '../store'
+import { selectCampus, deleteCampus, setVisibility, sortBy, navigatePage, fetchCampuses } from '../store'
 
 class AllCampuses extends React.Component {
+  componentDidMount() {
+    this.props.setVisibility('SHOW_ALL');
+    // console.log(this.props);
+    if (this.props.history.location.search.length === 0) {
+      this.props.navigatePage(1,'campuses');
+    } else if (this.props.history.location.search.length > 0) {
+      const query = this.props.history.location.search;
+      const pageId = query.slice(query.indexOf('=')+1);
+      this.props.navigatePage(pageId,'campuses');
+    }
+  }
+
   render() {
     return (
       <div id='display'>
@@ -19,13 +31,14 @@ class AllCampuses extends React.Component {
           </ul>
         </div>
         <ul id='all-campuses'>
-          {this.props.campuses.map((each) => {
+          {this.props.campusesOnPage.map((each) => {
             return (
             <li
               key={each.id}
-              style={{
-              display: each.show === false && "none"
-            }}>
+            //   style={{
+            //   display: each.show === false && "none"
+            // }}
+            >
               <div className='info'>
                 <Link to={'/campuses/' + each.id} onClick={() => this.props.selectCampus(each.id)}>
                   <h3>{each.name}</h3>
@@ -52,12 +65,14 @@ const mapStateToProps = (state) => {
     campuses: state.campuses,
     newCampus: state.newCampus,
     visibilityFilter: state.visibilityFilter,
-    sortBy: state.sortBy
+    sortBy: state.sortBy,
+    campusesOnPage: state.campusesOnPage
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    loadCampus: () => dispatch(fetchCampuses()),
     selectCampus: (selectedCampusId) => {
       return dispatch(selectCampus(selectedCampusId))
     },
@@ -69,6 +84,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     sortBy: (text) => {
       return dispatch(sortBy(text))
+    },
+    navigatePage: (pageId,pageType) => {
+      return dispatch(navigatePage(pageId,pageType))
     }
   }
 }

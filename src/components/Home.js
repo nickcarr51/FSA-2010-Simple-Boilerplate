@@ -3,7 +3,9 @@ import React from 'react'
 const Home = () => {
   return (
     <div id='display'>
-      Welcome home!
+      <div id='home-slider'>
+        Welcome home!
+      </div>
     </div>
   )
 }

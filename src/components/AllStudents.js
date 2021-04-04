@@ -1,9 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import {selectStudent,deleteStudent,setVisibility,sortBy} from '../store'
+import {selectStudent,deleteStudent,setVisibility,sortBy,navigatePage} from '../store'
 
 class AllStudents extends React.Component {
+  componentDidMount() {
+    this.props.navigatePage(1,'students');
+  }
+
   render() {
     return (
       <div id='display'>
@@ -20,13 +24,14 @@ class AllStudents extends React.Component {
             </ul>
         </div>
         <ul id='all-students'>
-          {this.props.students.map((each) => {
+          {this.props.studentsOnPage.map((each) => {
             return (
             <li
               key={each.id}
-              style={{
-              display: each.show === false && "none"
-            }}>
+            //   style={{
+            //   display: each.show === false && "none"
+            // }}
+            >
               <div className='info'>
                 <Link to={'/students/'+each.id} onClick={() => this.props.selectStudent(each.id)}>
                 <h3> 🎓 {each.firstName} {each.lastName}</h3>
@@ -53,7 +58,8 @@ const mapStateToProps = (state) => {
     students: state.students,
     newStudent: state.newStudent,
     visibilityFilter: state.visibilityFilter,
-    sortBy: state.sortBy
+    sortBy: state.sortBy,
+    studentsOnPage: state.studentsOnPage
   }
 }
 
@@ -70,6 +76,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     sortBy: (text) => {
       return dispatch(sortBy(text))
+    },
+    navigatePage: (pageId,pageType) => {
+      return dispatch(navigatePage(pageId,pageType))
     }
   }
 }

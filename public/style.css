@@ -13,7 +13,7 @@ body {
 }
 
 #app {
-  background-color: #ede2dc;
+  background-color: #f0e8e3;
   width: 90%;
   margin: auto;
   height: auto;
@@ -43,9 +43,8 @@ h1,h2,h3 {
   margin: auto;
   margin-bottom: 20px;
   padding: 0;
-  /* border: 1px solid #384949; */
   border-radius: 15px;
-  box-shadow: #e6b193 3px -5px 10px;
+  box-shadow: #e6b193 3px -5px 8px;
 }
 
 #nav a {
@@ -54,6 +53,7 @@ h1,h2,h3 {
 
 #nav h3 {
   margin: 10px;
+  color: #594233;
 }
 
 #nav>li {
@@ -70,6 +70,7 @@ h1,h2,h3 {
 
 #nav .selected {
   background-color: #FCFBFB;
+  color:#FCFBFB;
 }
 
 #nav>li:first-child {
@@ -121,6 +122,11 @@ h1,h2,h3 {
   padding-left: 15px;
 }
 
+.info h3 {
+  border-left: 3px solid #a34d43;
+  padding-left: 5px;
+}
+
 .info {
   display: inline-block;
   position: relative;
@@ -141,13 +147,6 @@ h1,h2,h3 {
   opacity: 0.9;
 }
 
-
-#all-campuses li>button {
-  width: 100%;
-  height: 40px;
-  padding: 10px;
-}
-
 .graphic img {
   max-width: 100%;
   object-fit: cover;
@@ -159,6 +158,9 @@ h1,h2,h3 {
 }
 
 #all-campuses li>button {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
   border-radius: 0 0 10px 10px;
   border: 0;
   background-color: #384949;
@@ -231,6 +233,7 @@ h1,h2,h3 {
   border-radius: 10px;
   margin: 5px;
   width: calc(50% - 1rem);
+  height: 300px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -239,6 +242,7 @@ h1,h2,h3 {
 #all-students li>div {
   width: 50%;
   padding: 10px;
+  height: 270px;
 }
 
 #all-students li>button {
@@ -281,7 +285,7 @@ h1,h2,h3 {
 .student-list>ul {
   list-style: none;
   border-radius: 10px;
-  background-color: #ede9e3;
+  background-color: #e1cfc4;
   padding: 10px;
 }
 
@@ -295,12 +299,13 @@ h1,h2,h3 {
   width: 150px;
 }
 
-#edit-campus {
+#edit-campus,#edit-student {
   border-radius: 15px;
-  background-color: #FAF3F3;
-  box-shadow:
+  background-color: #a6aeaa;
+  /* background-color: #FAF3F3; */
+  /* box-shadow:
     inset 45px 20px 80px -36px #f08e8e,
-    inset 50px 40px 109px -38px #a8b569;
+    inset 50px 40px 109px -38px #a8b569; */
   width: 90%;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -313,7 +318,18 @@ h1,h2,h3 {
   justify-content: space-evenly;
 }
 
+#edit-student form {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 #edit-campus h4 {
+  margin: 0;
+  padding-right: 30px;
+  border-right: 1px solid white;
+}
+
+#edit-student h4 {
   margin: 0;
   padding-right: 30px;
   border-right: 1px solid white;
@@ -326,29 +342,45 @@ h1,h2,h3 {
   background-color: #9b5353;
 }
 
+#edit-student button {
+  border: 0;
+  width: 100px;
+  color: white;
+  background-color: #9b5353;
+}
+
 /* styles for single student view */
 #single-student {
+  height: 500px;
+  width: 90%;
+  margin: auto;
   display: flex;
+  background-color: #FCFBFB;
+  border-radius: 15px;
 }
 
 #single-student>div {
   width: 50%;
 }
 
+.single-student-info {
+  border-right: 1px solid #384949;
+  padding: 20px;
+}
+
 #single-student img {
   max-width: 50%;
 }
 
-#edit-student {
-  border: 1px solid green;
-  width: 90%;
-  margin: auto;
-  padding: 10px;
+.campus-list {
+  padding: 20px;
 }
 
-#edit-student form {
-  display: flex;
-  justify-content: space-evenly;
+.campus-list ul {
+  list-style: none;
+  background-color: #e6d0c4;
+  border-radius: 15px;
+  padding: 10px;
 }
 
 /* style for filters */
@@ -425,4 +457,24 @@ h1,h2,h3 {
 
 #error p {
   font-size: 20px;
+}
+
+/* style for pagination */
+#pagination {
+  padding-left: 0;
+  list-style: none;
+  display: flex;
+  justify-content:flex-end;
+}
+
+#pagination li {
+  width: 25px;
+  font-weight: bolder;
+  text-align: center;
+}
+
+#pagination .current {
+  border-radius: 50%;
+  background-color: #566361;
+  color:#e6e4e1;
 }

@@ -12,6 +12,7 @@ import AddStudent from './components/AddStudent'
 import EditCampus from './components/EditCampus'
 import EditStudent from './components/EditStudent'
 import ErrorPage from './components/ErrorPage'
+import Pagination from './components/Pagination'
 import { fetchCampuses, fetchStudents } from './store.js'
 
 class App extends React.Component {
@@ -22,7 +23,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <>
       <Router>
@@ -35,6 +35,8 @@ class App extends React.Component {
           <Route exact path='/students/:studentId' component={SingleStudent} />
           <Route component={ErrorPage} />
         </Switch>
+          <Route exact path='/campuses' component={Pagination} />
+          <Route exact path='/students' component={Pagination} />
           <Route exact path='/students' component={AddStudent} />
           <Route exact path='/campuses' component={AddCampus} />
           <Route exact path='/campuses/:campusId' component={EditCampus} />

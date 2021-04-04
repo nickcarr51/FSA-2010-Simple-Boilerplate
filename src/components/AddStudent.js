@@ -26,7 +26,6 @@ class AddStudent extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <div id='add-student'>
         <form onSubmit={this.handleSubmit}>

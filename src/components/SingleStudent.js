@@ -14,7 +14,7 @@ class SingleStudent extends React.Component {
       const selectedStudent = this.props.selectedStudent
       return (
         <div id='single-student'>
-          <div>
+          <div className='single-student-info'>
             <h2>{selectedStudent.firstName} {selectedStudent.lastName}</h2>
             <img src={selectedStudent.imageUrl} />
             <br />
@@ -22,15 +22,15 @@ class SingleStudent extends React.Component {
             <br />
             Gpa: {selectedStudent.gpa}
           </div>
-          <div>
+          <div className='campus-list'>
             <h3>Campus List</h3>
             {selectedStudent.campus?
             <ul>
             <Link to={'/campuses/'+selectedStudent.campus.id} onClick={() => this.props.selectCampus(selectedStudent.campus.id)}>
-              <li>Campus: {selectedStudent.campus.name}</li>
+              <li><b>Campus</b><br/>{selectedStudent.campus.name} 👈</li>
             </Link>
-            <li>Address: {selectedStudent.campus.address}</li>
-            <li>Description: {selectedStudent.campus.description}</li>
+            <li><b>Address</b><br/>{selectedStudent.campus.address}</li>
+            <li><b>Description</b><br/>{selectedStudent.campus.description}</li>
             </ul>
             :
             <ul>

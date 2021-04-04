@@ -12,6 +12,24 @@ router.get('/allCampuses', async(req,res,next) => {
   }
 })
 
+router.get('/campuses', async(req,res,next) => {
+  try {
+    const query = req.query.page
+    if (query !== undefined) {
+      const campusesOnPage = await Campus.findAndCountAll({
+        include: [Student],
+        offset: (query*1 - 1) * 10,
+        limit: 10
+      })
+      res.send(campusesOnPage);
+    } else {
+      res.sendStatus(400);
+    }
+  } catch(err) {
+    next(err)
+  }
+})
+
 router.get('/campuses/:campusId', async(req,res,next) => {
     try {
       const selectedCampus = await Campus.findAll({
@@ -32,6 +50,24 @@ router.get('/allStudents', async(req,res,next) => {
       include: [Campus]
     });
     res.send(allStudents);
+  } catch(err) {
+    next(err)
+  }
+})
+
+router.get('/students', async(req,res,next) => {
+  try {
+    const query = req.query.page
+    if (query !== undefined) {
+      const studentsOnPage = await Student.findAndCountAll({
+        include: [Campus],
+        offset: (query*1 - 1) * 10,
+        limit: 10
+      })
+      res.send(studentsOnPage);
+    } else {
+      res.sendStatus(400);
+    }
   } catch(err) {
     next(err)
   }
@@ -91,7 +127,6 @@ router.delete('/students/:studentId', async(req, res, next) => {
 
 router.put('/campuses/:campusId', async(req,res,next) => {
   try {
-    console.log(req.body);
     const campusToUpdate = await Campus.findByPk(req.params.campusId);
     await campusToUpdate.update(req.body);
     res.send(campusToUpdate);
@@ -102,7 +137,6 @@ router.put('/campuses/:campusId', async(req,res,next) => {
 
 router.put('/students/:studentId', async(req,res,next) => {
   try {
-    console.log(req.body);
     const studentToUpdate = await Student.findByPk(req.params.studentId);
     await studentToUpdate.update(req.body);
     res.send(studentToUpdate);

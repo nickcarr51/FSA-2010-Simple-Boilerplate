@@ -18,8 +18,10 @@ const intialState = {
   selectedStudent: {},
   newCampus: {},
   newStudent: {},
-  visibilityFilter: SHOW_ALL,
-  sortBy: 'BY_DEFAULT'
+  visibilityFilter: '',
+  sortBy: '',
+  campusesOnPage: [],
+  studentsOnPage: []
 }
 
 
@@ -36,6 +38,7 @@ const UPDATE_STUDENT = 'UPDATE_STUDENT';
 const UNREGISTER_STUDENT = 'UNREGISTER_STUDENT';
 const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 const SORT_BY = 'SORT_BY';
+const NAVIGATE_PAGE = 'NAVIGATE_PAGE';
 
 const loadCampuses = (campuses) => {
   return {
@@ -159,8 +162,8 @@ const _updateCampus = (selectedCampus) => {
 export const updateCampus = (selectedCampus, history) => {
   return async(dispatch) => {
     const updatedCampus = (await axios.put(`/api/campuses/${selectedCampus.id}`,selectedCampus)).data;
-    dispatch(_updateCampus(updatedCampus));
-    history.push(`/campuses/${updatedCampus.id}`)
+    dispatch(_updateCampus(selectedCampus));
+    history.push(`/campuses/${selectedCampus.id}`)
   }
 }
 
@@ -208,6 +211,21 @@ export const sortBy = (text) => {
   }
 }
 
+export const navigatePage = (pageId, pageType) => {
+  return {
+    type: NAVIGATE_PAGE,
+    pageId,
+    pageType
+  }
+}
+
+// export const setCurrentPage = (pageId, pageType) => {
+//   return async(dispatch) => {
+//     const campusesOnPage = await axios.get(`/api/campuses?page=${pageId}`).data
+//     dispatch(navigatePage(pageId,pageType))
+//   }
+// }
+
 const reducer = (state = intialState, action) => {
   if (action.type === LOAD_CAMPUSES) {
     const campuses = action.campuses.map((each) => {
@@ -232,30 +250,38 @@ const reducer = (state = intialState, action) => {
   else if (action.type === ADD_CAMPUS) {
     const newCampus = action.newCampus
     state.campuses.push(newCampus)
+    state.campusesOnPage.push(newCampus)
     return { ...state, newCampus}
   }
   else if (action.type === ADD_STUDENT) {
     const newStudent = action.newStudent
     state.students.push(newStudent)
+    state.studentsOnPage.push(newStudent)
     return { ...state, newStudent}
   }
   else if (action.type === DELETE_CAMPUS) {
     const campuses = state.campuses.filter((campus) => {
       return campus.id !== action.campus.id
     });
-    return {...state, campuses}
+    const campusesOnPage = state.campusesOnPage.filter((campus) => {
+      return campus.id !== action.campus.id
+    });
+    return {...state, campuses, campusesOnPage}
   }
   else if (action.type === DELETE_STUDENT) {
     const students = state.students.filter((student) => {
       return student.id !== action.student.id
     });
-    return {...state, students}
+    const studentsOnPage = state.studentsOnPage.filter((student) => {
+      return student.id !== action.student.id
+    });
+    return {...state, students, studentsOnPage}
   }
   else if (action.type === UPDATE_CAMPUS) {
     const selectedCampus = action.selectedCampus;
     const campuses = state.campuses.map((each) => {
-      if (each.id === action.selectedCampus.id) {
-        return action.selectedCampus
+      if (each.id === selectedCampus.id) {
+        return selectedCampus
       } else {
         return each
       }
@@ -265,8 +291,8 @@ const reducer = (state = intialState, action) => {
   else if (action.type === UPDATE_STUDENT || action.type === UNREGISTER_STUDENT) {
     const selectedStudent = action.selectedStudent;
     const students = state.students.map((each) => {
-      if (each.id === action.selectedStudent.id) {
-        return action.selectedStudent
+      if (each.id === selectedStudent.id) {
+        return selectedStudent
       } else {
         return each
       }
@@ -275,70 +301,101 @@ const reducer = (state = intialState, action) => {
   }
   else if (action.type === SET_VISIBILITY_FILTER) {
     if (action.text === SHOW_EMPTY_CAMPUSES) {
-      const campuses = state.campuses.map((each) => {
+      const campuses = [...state.campuses].map((each) => {
         if (each.students !== undefined && each.students.length > 0) {
           return { ... each, show: false}
         } else {
           return each
         }
+      }).filter((elem) => {
+        return elem.show !== false
       })
       return {...state, campuses, visibilityFilter: action.text}
     } else if (action.text === SHOW_ALL) {
-      const campuses = state.campuses.map((each) => {
+      const campuses = [...state.campuses].map((each) => {
         return {...each, show: true}
       })
-      const students = state.students.map((each) => {
+      const students = [...state.students].map((each) => {
         return { ...each, show:true}
       })
       return {...state, campuses, students, visibilityFilter: action.text}
     } else if (action.text === SHOW_UNREGISTERED_STUDENTS) {
-      const students = state.students.map((each) => {
+      const students = [...state.students].map((each) => {
         if (each.campusId !== null) {
           return { ...each, show: false}
         } else {
           return each
         }
+      }).filter((elem) => {
+        return elem.show !== false
       })
       return {...state, students, visibilityFilter: action.text}
     }
   }
   else if (action.type === SORT_BY) {
     if (action.text === BY_GPA) {
+      let uniqueCheck = [];
       const students = state.students.map((each)=> {
         return each.gpa
       }).sort().map((each)=> {
         const toUse = state.students.find((elem) => {
-          return elem.gpa === each
+          return elem.gpa === each && !uniqueCheck.includes(elem.id)
         })
+        uniqueCheck.push(toUse.id)
         return toUse
       })
       return { ...state, students, sortBy:action.text}
     } else if (action.text === BY_LASTNAME) {
+      let uniqueCheck = [];
       const students = state.students.map((each)=> {
         return each.lastName
       }).sort().map((each)=> {
         const toUse = state.students.find((elem) => {
-          return elem.lastName === each
+          return elem.lastName === each && !uniqueCheck.includes(elem.id)
         })
+        uniqueCheck.push(toUse.id)
         return toUse
       })
       return { ...state, students, sortBy:action.text}
     } else if (action.text === BY_NUM_OF_STUDENTS) {
       let uniqueCheck = [];
-      const campuses = state.campuses.map((each)=> {
+      const campusesOnPage = state.campusesOnPage.map((each)=> {
         if (each.students && each.students.length > 0) {
           return each.students.length
         } else {
           return 0
         }
       }).sort().map((each)=> {
-        const toUse = state.campuses.find((elem) => {
+        const toUse = state.campusesOnPage.find((elem) => {
             return elem.students.length === each && !uniqueCheck.includes(elem.name)
         })
-        uniqueCheck.push(toUse.name)
-        return toUse
+        if (toUse !== undefined) {
+          uniqueCheck.push(toUse.name)
+        }
+        return toUse //need to fix when undefined is returned (1 campus is currently missing)
       })
-      return { ...state, campuses, sortBy:action.text}
+      return { ...state, campusesOnPage, sortBy:action.text}
+    }
+  }
+  else if (action.type === NAVIGATE_PAGE) {
+    if (action.pageType === 'campuses') {
+      const campusesOnPage = state.campuses.filter((elem,idx) => {
+        if (action.pageId > 1) {
+          return idx > (action.pageId*1 - 1)*10 && idx <= action.pageId * 10
+        } else {
+          return idx <= 10
+        }
+      })
+      return { ...state, campusesOnPage}
+    } else if (action.pageType === 'students') {
+      const studentsOnPage = state.students.filter((elem,idx) => {
+        if (action.pageId > 1) {
+          return idx > (action.pageId*1 - 1)*10 && idx <= action.pageId * 10
+        } else {
+          return idx <= 9
+        }
+      })
+      return { ...state, studentsOnPage}
     }
   }
 
