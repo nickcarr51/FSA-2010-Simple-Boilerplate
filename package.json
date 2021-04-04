@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server",
+    "start": "npm run build & node server & npm run seed",
     "build": "webpack",
     "build:watch": "webpack --watch",
     "start:server": "node-dev --respawn server",
