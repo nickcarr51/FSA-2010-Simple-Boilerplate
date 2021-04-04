@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build & node server & npm run seed",
     "build": "webpack",
     "build:watch": "webpack --watch",
     "start:server": "node-dev --respawn server",
     "start:dev": "npm run build:watch & npm run start:server & npm run seed",
-    "seed": "node ./bin/seed"
+    "seed": "node ./bin/seed",
+    "start": "npm run build & node server & npm run seed"
   },
   "repository": {
     "type": "git",
