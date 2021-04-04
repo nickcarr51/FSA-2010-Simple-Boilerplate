@@ -93,6 +93,31 @@ h1,h2,h3 {
   border-radius: 15px;
 }
 
+
+/* Homeslider */
+#home-slider {
+  width: 60%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 15px;
+  background-color: #FFFFFF;
+  padding: 15px;
+}
+
+#home-slider img {
+  width: 65%;
+  margin: auto;
+}
+
+#home-slider p {
+  width: 65%;
+  margin: auto;
+  color:#594233;
+}
+
+
 /* styles for all campuses view */
 #all-campuses {
   width: 70%;
