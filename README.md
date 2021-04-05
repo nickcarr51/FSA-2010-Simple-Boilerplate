@@ -57,18 +57,18 @@ Congrats! You have completed your first vertical slice! Make sure to `commit -m 
 - [x] Clicking on a campus from the all-campuses view should navigate to show that campus in the single-campus view
 
 - Write a component to display a single student with the following information:
-  - [ ] The student's full name, email, image, and gpa
-  - [ ] The name of their campus (or a helpful message if they don't have one)
-- [ ] Display the appropriate student when the url matches `/students/:studentId`
-- [ ] Clicking on a student from the all-students view should navigate to show that student in the single-student view
+  - [x] The student's full name, email, image, and gpa
+  - [x] The name of their campus (or a helpful message if they don't have one)
+- [x] Display the appropriate student when the url matches `/students/:studentId`
+- [x] Clicking on a student from the all-students view should navigate to show that student in the single-student view
 
-- [ ] Clicking on the name of a student in the single-campus view should navigate to show that student in the single-student view
-- [ ] Clicking on the name of a campus in the single-student view should navigate to show that campus in the single-campus view
+- [x] Clicking on the name of a student in the single-campus view should navigate to show that student in the single-student view
+- [x] Clicking on the name of a campus in the single-student view should navigate to show that campus in the single-campus view
 
 #### Backend
 
-- [ ] Write a route to serve up a single campus (based on its id), _including that campuses' students_
-- [ ] Write a route to serve up a single student (based on their id), _including that student's campus_
+- [x] Write a route to serve up a single campus (based on its id), _including that campuses' students_
+- [x] Write a route to serve up a single student (based on their id), _including that student's campus_
 
 Congrats! You have completed your second vertical slice! Make sure to `commit -m "Feature: Get Single Campus and Student"` before moving on (see RUBRIC.md - points are awarded/deducted for a proper git workflow)!
 
@@ -80,23 +80,23 @@ Congrats! You have completed your second vertical slice! Make sure to `commit -m
 
 #### Frontend
 
-- [ ] Write a component to display a form for adding a new campus that contains inputs for _at least_ the name and address.
-- [ ] Display this component as part of the all-campuses view, alongside the list of campuses
+- [x] Write a component to display a form for adding a new campus that contains inputs for _at least_ the name and address.
+- [x] Display this component as part of the all-campuses view, alongside the list of campuses
 - Submitting the form with a valid name/address should:
 
-  - [ ] Make an AJAX request that causes the new campus to be persisted in the database
-  - [ ] Add the new campus to the list of campuses without needing to refresh the page
+  - [x] Make an AJAX request that causes the new campus to be persisted in the database
+  - [x] Add the new campus to the list of campuses without needing to refresh the page
 
-- [ ] Write a component to display a form for adding a new student that contains inputs for _at least_ first name, last name and email
-- [ ] Display this component as part of the all-students view, alongside the list of students
+- [x] Write a component to display a form for adding a new student that contains inputs for _at least_ first name, last name and email
+- [x] Display this component as part of the all-students view, alongside the list of students
 - Submitting the form with a valid first name/last name/email should:
-  - [ ] Make an AJAX request that causes the new student to be persisted in the database
-  - [ ] Add the new student to the list of students without needing to refresh the page
+  - [x] Make an AJAX request that causes the new student to be persisted in the database
+  - [x] Add the new student to the list of students without needing to refresh the page
 
 #### Backend
 
-- [ ] Write a route to add a new campus
-- [ ] Write a route to add a new student
+- [x] Write a route to add a new campus
+- [x] Write a route to add a new student
 
 Congrats! You have completed your third vertical slice! Make sure to `commit -m "Feature: Add Campus and Student"` before moving on (see RUBRIC.md - points are awarded/deducted for a proper git workflow)!
 
@@ -108,21 +108,21 @@ Congrats! You have completed your third vertical slice! Make sure to `commit -m 
 
 #### Frontend
 
-- [ ] In the all-campuses view, include an `X` button next to each campus
+- [x] In the all-campuses view, include an `X` button next to each campus
 - Clicking the `X` button should:
 
-  - [ ] Make an AJAX request that causes that campus to be removed from database
-  - [ ] Remove the campus from the list of campuses without needing to refresh the page
+  - [x] Make an AJAX request that causes that campus to be removed from database
+  - [x] Remove the campus from the list of campuses without needing to refresh the page
 
-- [ ] In the all-students view, include an `X` button next to each student
+- [x] In the all-students view, include an `X` button next to each student
 - Clicking the `X` button should:
-  - [ ] Make an AJAX request that causes that student to be removed from database
-  - [ ] Remove the student from the list of students without needing to refresh the page
+  - [x] Make an AJAX request that causes that student to be removed from database
+  - [x] Remove the student from the list of students without needing to refresh the page
 
 #### Backend
 
-- [ ] Write a route to remove a campus (based on its id)
-- [ ] Write a route to remove a student (based on their id)
+- [x] Write a route to remove a campus (based on its id)
+- [x] Write a route to remove a student (based on their id)
 
 Congrats! You have completed your fourth vertical slice! Make sure to `commit -m "Feature: Remove Campus and Student"` before moving on (see RUBRIC.md - points are awarded/deducted for a proper git workflow)!
 
@@ -134,23 +134,23 @@ Congrats! You have completed your fourth vertical slice! Make sure to `commit -m
 
 #### Frontend
 
-- [ ] Write a component to display a form updating _at least_ a campus's name and address
-- [ ] Display this component as part of the single-campus view, alongside the single campus
+- [x] Write a component to display a form updating _at least_ a campus's name and address
+- [x] Display this component as part of the single-campus view, alongside the single campus
 - Submitting the form with valid data should:
-  - [ ] Make an AJAX request that causes that campus to be updated in the database
-  - [ ] Update the campus in the current view without needing to refresh the page
-- [ ] In the single-campus view, display an `Unregister` button next to each of its students, which removes the student from the campus (in the database as well as this view); hint: the student is still in the database but is no longer associated with the campus
+  - [x] Make an AJAX request that causes that campus to be updated in the database
+  - [x] Update the campus in the current view without needing to refresh the page
+- [x] In the single-campus view, display an `Unregister` button next to each of its students, which removes the student from the campus (in the database as well as this view); hint: the student is still in the database but is no longer associated with the campus
 
-- [ ] Write a component to display a form updating _at least_ a student's first and last names, and email
-- [ ] Display this component as part of the single-student view, alongside the single student
+- [x] Write a component to display a form updating _at least_ a student's first and last names, and email
+- [x] Display this component as part of the single-student view, alongside the single student
 - Submitting the form with valid data should:
-  - [ ] Make an AJAX request that causes that student to be updated in the database
-  - [ ] Update the student in the current view without needing to refresh the page
+  - [x] Make an AJAX request that causes that student to be updated in the database
+  - [x] Update the student in the current view without needing to refresh the page
 
 #### Backend
 
-- [ ] Write a route to update an existing campus
-- [ ] Write a route to update an existing student
+- [x] Write a route to update an existing campus
+- [x] Write a route to update an existing student
 
 </details>
 
@@ -172,29 +172,29 @@ Congrats! You have completed your fourth vertical slice! Make sure to `commit -m
 
 #### Finishing Touches
 
-- [ ] If a user attempts to add a new student or campus without a required field, a helpful message should be displayed
-- [ ] If a user attempts to access a page that doesn't exist (ex. `/potato`), a helpful "not found" message should be displayed
-- [ ] If a user attempts to view a student/campus that doesn't exist, a helpful message should be displayed
+- [x] If a user attempts to add a new student or campus without a required field, a helpful message should be displayed
+- [x] If a user attempts to access a page that doesn't exist (ex. `/potato`), a helpful "not found" message should be displayed
+- [x] If a user attempts to view a student/campus that doesn't exist, a helpful message should be displayed
 - [ ] Whenever a component needs to wait for data to load from the server, a "loading" message should be displayed until the data is available
-- [ ] Overall, the app is spectacularly styled and visually stunning
+- [x] Overall, the app is spectacularly styled and visually stunning
 
 #### Ordering
 
-- [ ] Create option for students to be ordered based on lastName on all-students view
-- [ ] Create option for students to be ordered based on GPA on all-students view
-- [ ] Create option for campuses to be ordered based on number of enrolled students on all-campuses view
+- [x] Create option for students to be ordered based on lastName on all-students view
+- [x] Create option for students to be ordered based on GPA on all-students view
+- [x] Create option for campuses to be ordered based on number of enrolled students on all-campuses view
 
 #### Filtering
 
-- [ ] Create a filter on all-students view to only show students who are not registered to a campus
-- [ ] Create a filter on the all-campuses view to only show campuses that do not have any registered students
+- [x] Create a filter on all-students view to only show students who are not registered to a campus
+- [x] Create a filter on the all-campuses view to only show campuses that do not have any registered students
 
 #### Seeding & Pagination
 
-- [ ] Seed 100+ students and 100+ campuses
-- [ ] Implement _front-end_ pagination for the all-students view (e.g. `/students?page=1` renders the first ten students, and `/students?page=2` renders students 11-20)
-- [ ] Implement _front-end_ pagination for the all-campuses view (e.g. `/campuses?page=1` renders the first ten campuses, and `/campuses?page=2` renders campuses 11-20)
-- [ ] Implement _back-end_ pagination for students (e.g. `/api/students?page=1` returns the first ten students' data, and `/api/students?page=2` returns students 11-20)
-- [ ] Implement _back-end_ pagination for campuses (e.g. `/api/campuses?page=1` returns the first ten campuses' data, and `/api/campuses?page=2` returns campuses 11-20)
+- [x] Seed 100+ students and 100+ campuses
+- [x] Implement _front-end_ pagination for the all-students view (e.g. `/students?page=1` renders the first ten students, and `/students?page=2` renders students 11-20)
+- [x] Implement _front-end_ pagination for the all-campuses view (e.g. `/campuses?page=1` renders the first ten campuses, and `/campuses?page=2` renders campuses 11-20)
+- [x] Implement _back-end_ pagination for students (e.g. `/api/students?page=1` returns the first ten students' data, and `/api/students?page=2` returns students 11-20)
+- [x] Implement _back-end_ pagination for campuses (e.g. `/api/campuses?page=1` returns the first ten campuses' data, and `/api/campuses?page=2` returns campuses 11-20)
 
 </details>

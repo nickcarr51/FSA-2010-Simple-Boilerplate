@@ -16,15 +16,13 @@ class SingleCampus extends React.Component {
     let studentToUnregister = this.state.students.filter((elem) => {return elem.id*1 === ev.target.value*1});
     // console.log({...studentToUnregister[0], campusId: null});
     let updatedStudents = this.state.students.filter((elem) => { return elem.id*1 !== ev.target.value*1});
-    console.log({...this.props.selectedCampus, students: updatedStudents})
+    // console.log({...this.props.selectedCampus, students: updatedStudents})
     this.setState({students: updatedStudents})
     this.props.unregisterStudent({...studentToUnregister[0], campusId: null})
     this.props.updateCampus({...this.props.selectedCampus, students: updatedStudents})
   }
 
   render() {
-    console.log(this.props);
-    console.log(this.state);
     if (this.props.selectedCampus) {
       const selectedCampus = this.props.selectedCampus;
       return (

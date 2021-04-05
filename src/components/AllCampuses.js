@@ -5,8 +5,7 @@ import { selectCampus, deleteCampus, setVisibility, sortBy, navigatePage, fetchC
 
 class AllCampuses extends React.Component {
   componentDidMount() {
-    this.props.setVisibility('SHOW_ALL');
-    // console.log(this.props);
+    console.log(this.props);
     if (this.props.history.location.search.length === 0) {
       this.props.navigatePage(1,'campuses');
     } else if (this.props.history.location.search.length > 0) {
@@ -17,7 +16,7 @@ class AllCampuses extends React.Component {
   }
 
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     return (
       <div id='display'>
         <div className='view-controls'>
