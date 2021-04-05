@@ -17,6 +17,7 @@ class AllCampuses extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div id='display'>
         <div className='view-controls'>
@@ -27,7 +28,7 @@ class AllCampuses extends React.Component {
           </ul>
             <h3>Sort by</h3>
           <ul className='sorting'>
-            <li onClick={()=>this.props.sortBy('BY_NUM_OF_STUDENTS')} className={this.props.sortBy === 'BY_NUM_OF_STUDENTS' ? 'active' : undefined}>Number of students</li>
+            <li onClick={()=>this.props.sortBy('BY_NUM_OF_STUDENTS')} className={this.props.sortFilter === 'BY_NUM_OF_STUDENTS'? 'active' : undefined}>Number of students</li>
           </ul>
         </div>
         <ul id='all-campuses'>
@@ -65,7 +66,7 @@ const mapStateToProps = (state) => {
     campuses: state.campuses,
     newCampus: state.newCampus,
     visibilityFilter: state.visibilityFilter,
-    sortBy: state.sortBy,
+    sortFilter: state.sortFilter,
     campusesOnPage: state.campusesOnPage
   }
 }

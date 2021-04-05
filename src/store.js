@@ -19,7 +19,7 @@ const intialState = {
   newCampus: {},
   newStudent: {},
   visibilityFilter: '',
-  sortBy: '',
+  sortFilter: '',
   campusesOnPage: [],
   studentsOnPage: []
 }
@@ -310,7 +310,10 @@ const reducer = (state = intialState, action) => {
       }).filter((elem) => {
         return elem.show !== false
       })
-      return {...state, campuses, visibilityFilter: action.text}
+      const campusesOnPage = campuses.filter((elem,idx) => {
+        return idx <= 9
+      })
+      return {...state, campuses, campusesOnPage, visibilityFilter: action.text}
     } else if (action.text === SHOW_ALL) {
       const campuses = [...state.campuses].map((each) => {
         return {...each, show: true}
@@ -318,7 +321,13 @@ const reducer = (state = intialState, action) => {
       const students = [...state.students].map((each) => {
         return { ...each, show:true}
       })
-      return {...state, campuses, students, visibilityFilter: action.text}
+      const studentsOnPage = students.filter((elem,idx) => {
+        return idx <= 9
+      })
+      const campusesOnPage = campuses.filter((elem,idx) => {
+        return idx <= 9
+      })
+      return {...state, campuses, students, studentsOnPage, campusesOnPage, visibilityFilter: action.text}
     } else if (action.text === SHOW_UNREGISTERED_STUDENTS) {
       const students = [...state.students].map((each) => {
         if (each.campusId !== null) {
@@ -329,7 +338,10 @@ const reducer = (state = intialState, action) => {
       }).filter((elem) => {
         return elem.show !== false
       })
-      return {...state, students, visibilityFilter: action.text}
+      const studentsOnPage = students.filter((elem,idx) => {
+        return idx <= 9
+      })
+      return {...state, students, studentsOnPage, visibilityFilter: action.text}
     }
   }
   else if (action.type === SORT_BY) {
@@ -344,7 +356,10 @@ const reducer = (state = intialState, action) => {
         uniqueCheck.push(toUse.id)
         return toUse
       })
-      return { ...state, students, sortBy:action.text}
+      const studentsOnPage = students.filter((elem,idx) => {
+          return idx <= 9
+        })
+      return { ...state, students, studentsOnPage, sortFilter:action.text}
     } else if (action.text === BY_LASTNAME) {
       let uniqueCheck = [];
       const students = state.students.map((each)=> {
@@ -356,17 +371,20 @@ const reducer = (state = intialState, action) => {
         uniqueCheck.push(toUse.id)
         return toUse
       })
-      return { ...state, students, sortBy:action.text}
+      const studentsOnPage = students.filter((elem,idx) => {
+        return idx <= 9
+      })
+      return { ...state, students, studentsOnPage, sortFilter:action.text}
     } else if (action.text === BY_NUM_OF_STUDENTS) {
       let uniqueCheck = [];
-      const campusesOnPage = state.campusesOnPage.map((each)=> {
+      const campuses = state.campuses.map((each)=> {
         if (each.students && each.students.length > 0) {
           return each.students.length
         } else {
           return 0
         }
       }).sort().map((each)=> {
-        const toUse = state.campusesOnPage.find((elem) => {
+        const toUse = state.campuses.find((elem) => {
             return elem.students.length === each && !uniqueCheck.includes(elem.name)
         })
         if (toUse !== undefined) {
@@ -374,7 +392,10 @@ const reducer = (state = intialState, action) => {
         }
         return toUse //need to fix when undefined is returned (1 campus is currently missing)
       })
-      return { ...state, campusesOnPage, sortBy:action.text}
+      const campusesOnPage = campuses.filter((elem,idx) => {
+          return idx <= 10
+      })
+      return { ...state, campuses, campusesOnPage, sortFilter:action.text}
     }
   }
   else if (action.type === NAVIGATE_PAGE) {

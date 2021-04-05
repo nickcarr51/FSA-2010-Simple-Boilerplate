@@ -111,10 +111,18 @@ h1,h2,h3 {
   margin: auto;
 }
 
+#home-slider h2 {
+  text-decoration: underline wavy #da6b57;
+}
+
 #home-slider p {
   width: 65%;
   margin: auto;
   color:#594233;
+}
+
+#home-slider b {
+  font-size: 25px;
 }
 
 
@@ -459,7 +467,7 @@ h1,h2,h3 {
 }
 
 .sorting .active {
-  background-color: #8e7a8e;
+  background-color: #e6c4a3;
   color: #1f3034;
 }
 

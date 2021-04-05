@@ -19,8 +19,8 @@ class AllStudents extends React.Component {
             </ul>
           <h3>Sort by</h3>
             <ul className='sorting'>
-              <li onClick={()=>this.props.sortBy('BY_LASTNAME')} className={this.props.sortBy === 'BY_LASTNAME' ? 'active':undefined}>Lastname</li>
-              <li onClick={()=>this.props.sortBy('BY_GPA')} className={this.props.sortBy === 'BY_GPA' ? 'active':undefined}>GPA</li>
+              <li onClick={()=>this.props.sortBy('BY_LASTNAME')} className={this.props.sortFilter === 'BY_LASTNAME' ? 'active':undefined}>Lastname</li>
+              <li onClick={()=>this.props.sortBy('BY_GPA')} className={this.props.sortFilter === 'BY_GPA' ? 'active':undefined}>GPA</li>
             </ul>
         </div>
         <ul id='all-students'>
@@ -58,7 +58,7 @@ const mapStateToProps = (state) => {
     students: state.students,
     newStudent: state.newStudent,
     visibilityFilter: state.visibilityFilter,
-    sortBy: state.sortBy,
+    sortFilter: state.sortFilter,
     studentsOnPage: state.studentsOnPage
   }
 }
