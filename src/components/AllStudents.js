@@ -1,20 +1,46 @@
 import React from 'react'
+import axios from 'axios'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import {selectStudent,deleteStudent,setVisibility,sortBy,navigatePage} from '../store'
+import {selectStudent,deleteStudent,setVisibility,sortBy,navigatePage,fetchStudents} from '../store'
 
 class AllStudents extends React.Component {
-  componentDidMount() {
-    this.props.navigatePage(1,'students');
+  constructor(props) {
+    super(props)
+    this.state = {
+      students: props.students.length > 0? props.students : [],
+      studentsOnPage: props.studentsOnPage.length > 0? props.studentsOnPage : []
+    }
+  }
+
+  async componentDidMount() {
+    // this.props.navigatePage(1,'students');
+    const query = this.props.history.location.search;
+
+    if (query.length === 0) {
+      const studentsOnPage = (await axios.get(`/api/students?page=1`)).data;
+      this.setState({
+        studentsOnPage: studentsOnPage.rows
+      })
+    } else if (query.length > 0) {
+      const pageId = query.slice(query.indexOf('=')+1);
+      const studentsOnPage = (await axios.get(`/api/students?page=${pageId}`)).data;
+      this.setState({
+        studentsOnPage: studentsOnPage.rows
+      })
+    }
   }
 
   render() {
+
+    const studentsOnPage = this.props.studentsOnPage.length > 0 ? this.props.studentsOnPage : this.state.studentsOnPage;
+
     return (
       <div id='display'>
         <div className='view-controls'>
           <h3>Filter by</h3>
             <ul className='filters'>
-              <li onClick={()=>this.props.setVisibility('SHOW_ALL')} className={this.props.visibilityFilter === 'SHOW_ALL'? 'active' : undefined}>All students</li>
+              <li onClick={()=>this.props.fetchStudents()} className={this.props.visibilityFilter === 'SHOW_ALL'? 'active' : undefined}>All students</li>
               <li onClick={()=>this.props.setVisibility('SHOW_UNREGISTERED_STUDENTS')} className={this.props.visibilityFilter === 'SHOW_UNREGISTERED_STUDENTS'? 'active' : undefined}>Unregistered students</li>
             </ul>
           <h3>Sort by</h3>
@@ -24,7 +50,7 @@ class AllStudents extends React.Component {
             </ul>
         </div>
         <ul id='all-students'>
-          {this.props.studentsOnPage.map((each) => {
+          {studentsOnPage.map((each) => {
             return (
             <li
               key={each.id}
@@ -65,6 +91,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchStudents: () => {
+      return dispatch(fetchStudents())
+    },
     selectStudent: (selectedStudentId) => {
       return dispatch(selectStudent(selectedStudentId))
     },

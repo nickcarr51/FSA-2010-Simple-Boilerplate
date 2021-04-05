@@ -14,6 +14,7 @@ router.get('/allCampuses', async(req,res,next) => {
 
 router.get('/campuses', async(req,res,next) => {
   try {
+    console.log('trying to do my thing!')
     const query = req.query.page
     if (query !== undefined) {
       const campusesOnPage = await Campus.findAndCountAll({

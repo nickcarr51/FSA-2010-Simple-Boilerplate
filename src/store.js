@@ -231,13 +231,13 @@ const reducer = (state = intialState, action) => {
     const campuses = action.campuses.map((each) => {
       return { ...each, show: true}
     })
-    return {...state, campuses}
+    return {...state, campuses, visibilityFilter:SHOW_ALL}
   }
   else if (action.type === LOAD_STUDENTS) {
     const students = action.students.map((each) => {
       return {...each, show:true}
     })
-    return {...state, students}
+    return {...state, students, visibilityFilter:SHOW_ALL}
   }
   else if (action.type === SELECT_CAMPUS) {
     const selectedCampus = action.selectedCampus
