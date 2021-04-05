@@ -1,12 +1,10 @@
-#### Preview
+## Preview
+![](https://github.com/felicityandherdragon/JPFP/blob/master/Kapture%202021-04-04%20at%2023.14.44.gif)
 
 
-#### Checking off requirements that are done in this version (or at least I THOUGHT that are done):
+## Checking off requirements that are done in this version (or at least I THOUGHT that are done):
 
-## Tiers
 ### Tier 1: All Campuses and Students (20/61)
-
-<details>
 
 #### Frontend
 
@@ -42,11 +40,8 @@
 
 Congrats! You have completed your first vertical slice! Make sure to `commit -m "Feature: Get All Campuses and Students"` before moving on (see RUBRIC.md - points are awarded/deducted for a proper git workflow)!
 
-</details>
 
 ### Tier 2: Single Student and Single Campus (12/61)
-
-<details>
 
 #### Frontend
 
@@ -70,13 +65,7 @@ Congrats! You have completed your first vertical slice! Make sure to `commit -m 
 - [x] Write a route to serve up a single campus (based on its id), _including that campuses' students_
 - [x] Write a route to serve up a single student (based on their id), _including that student's campus_
 
-Congrats! You have completed your second vertical slice! Make sure to `commit -m "Feature: Get Single Campus and Student"` before moving on (see RUBRIC.md - points are awarded/deducted for a proper git workflow)!
-
-</details>
-
 ### Tier 3: Adding a Campus and Adding a Student (10/61)
-
-<details>
 
 #### Frontend
 
@@ -98,13 +87,7 @@ Congrats! You have completed your second vertical slice! Make sure to `commit -m
 - [x] Write a route to add a new campus
 - [x] Write a route to add a new student
 
-Congrats! You have completed your third vertical slice! Make sure to `commit -m "Feature: Add Campus and Student"` before moving on (see RUBRIC.md - points are awarded/deducted for a proper git workflow)!
-
-</details>
-
 ### Tier 4: Removing a Campus and Removing a Student (8/61)
-
-<details>
 
 #### Frontend
 
@@ -124,13 +107,7 @@ Congrats! You have completed your third vertical slice! Make sure to `commit -m 
 - [x] Write a route to remove a campus (based on its id)
 - [x] Write a route to remove a student (based on their id)
 
-Congrats! You have completed your fourth vertical slice! Make sure to `commit -m "Feature: Remove Campus and Student"` before moving on (see RUBRIC.md - points are awarded/deducted for a proper git workflow)!
-
-</details>
-
 ### Tier 5: Updating a Campus and Updating a Student (11/61)
-
-<details>
 
 #### Frontend
 
@@ -152,11 +129,7 @@ Congrats! You have completed your fourth vertical slice! Make sure to `commit -m
 - [x] Write a route to update an existing campus
 - [x] Write a route to update an existing student
 
-</details>
-
 ### Bonus Tier: Finishing Touches (15 EC)
-
-<details>
 
 #### Testing
 
@@ -196,5 +169,3 @@ Congrats! You have completed your fourth vertical slice! Make sure to `commit -m
 - [x] Implement _front-end_ pagination for the all-campuses view (e.g. `/campuses?page=1` renders the first ten campuses, and `/campuses?page=2` renders campuses 11-20)
 - [x] Implement _back-end_ pagination for students (e.g. `/api/students?page=1` returns the first ten students' data, and `/api/students?page=2` returns students 11-20)
 - [x] Implement _back-end_ pagination for campuses (e.g. `/api/campuses?page=1` returns the first ten campuses' data, and `/api/campuses?page=2` returns campuses 11-20)
-
-</details>
