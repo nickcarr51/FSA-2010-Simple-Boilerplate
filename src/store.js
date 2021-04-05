@@ -177,8 +177,8 @@ const _updateStudent = (selectedStudent) => {
 export const updateStudent = (selectedStudent, history) => {
   return async(dispatch) => {
     const updatedStudent = (await axios.put(`/api/students/${selectedStudent.id}`,selectedStudent)).data;
-    dispatch(_updateStudent(updatedStudent));
-    history.push(`/students/${updatedStudent.id}`)
+    dispatch(_updateStudent(selectedStudent));
+    history.push(`/students/${selectedStudent.id}`)
   }
 }
 
