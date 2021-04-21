@@ -9,7 +9,7 @@
     "start:server": "node-dev --respawn server",
     "start:dev": "npm run build:watch & npm run start:server & npm run seed",
     "seed": "node ./bin/seed",
-    "start": "npm run build & node server & npm run seed"
+    "start": "npm run seed && npm run build & node server"
   },
   "repository": {
     "type": "git",
