@@ -1,9 +1,14 @@
 import React from 'react';
+import NavBar from "./NavBar";
+import Routes from "./routes";
 
 const App = () => {
-  return (
-    <div>Hello World!</div>
-  );
-};
+  return(
+    <div>
+      {/* <NavBar /> */}
+      <Routes />
+    </div>
+  )
+}
 
 export default App;
