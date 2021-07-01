@@ -74,3 +74,12 @@ ul {
   height: 15%;
   width: 15%;
 }
+
+ul {
+  margin-left: -2%;
+}
+
+section {
+  margin-right: 10%;
+  margin-left: 10%;
+}

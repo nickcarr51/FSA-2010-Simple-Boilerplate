@@ -33,13 +33,15 @@ const RandomMeal = () => {
     let youTubeId = meal.strYoutube.slice(-11);
     let youTubeURL = "https://www.youtube.com/embed/"+youTubeId;
 
-    console.log("meal state is ",meal);
+    // console.log("meal state is ",meal);
 
 
     return (
       <div className="dinner-box">
         <NavBar />
       <center>
+       <b><i>Refresh your browser for another option!</i></b>
+
       <h1><strong>{meal.strMeal}</strong></h1>
       <h2>Ingredients</h2>
       <ul>
@@ -55,11 +57,11 @@ const RandomMeal = () => {
       </ul>
 
       <h3>Recipe</h3>
-      <body>
+      <section>
       {
         meal.strInstructions
       }
-      </body>
+      </section>
 
       {
 			meal.strYoutube ?
@@ -74,8 +76,8 @@ const RandomMeal = () => {
 
 		</div>	: ''
 		}
-      <NavLink to="/AnotherMeal" className="main-nav" activeClassName="main-nav-active">Next
-      </NavLink>
+      {/* <NavLink to="/AnotherMeal" className="main-nav" activeClassName="main-nav-active">Next
+      </NavLink> */}
     </center>
     </div>
      );

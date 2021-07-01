@@ -10,7 +10,7 @@ const Navbar = () => {
               Home
             </NavLink>
 
-            <NavLink to="/chickenmeal" className="nav-bar">
+            {/* <NavLink to="/chickenmeal" className="nav-bar">
               Chicken
             </NavLink>
 
@@ -22,7 +22,7 @@ const Navbar = () => {
 
             <NavLink to="/seafoodmeal" className="nav-bar">
               Seafood
-            </NavLink>
+            </NavLink> */}
 
       </nav>
       <hr />
